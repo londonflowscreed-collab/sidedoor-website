@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup Guide — Sidedoor</title>
+  <meta name="description" content="How to set up Sidedoor — for professionals and clients. Step-by-step guide." />
+  <meta name="theme-color" content="#bf5af2" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0a0f;
+      --bg2:       #111118;
+      --bg3:       #18181f;
+      --accent:    #bf5af2;
+      --accent2:   #9b3dd4;
+      --accent-glow: rgba(191, 90, 242, 0.18);
+      --text:      #f0f0f5;
+      --muted:     #8888a8;
+      --border:    rgba(191, 90, 242, 0.15);
+      --radius:    14px;
+      --font:      -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 15, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--accent2); }
+
+    /* HERO */
+    .page-hero {
+      padding: 9rem 1.5rem 4rem;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .page-hero .badge {
+      display: inline-block;
+      background: var(--accent-glow);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    /* TAB SWITCHER */
+    .tab-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0 1.5rem 3rem;
+    }
+
+    .tab-btn {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.65rem 1.75rem;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .tab-btn:hover:not(.active) {
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    /* CONTENT PANELS */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* SETUP STEPS */
+    .setup-section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 1.5rem 6rem;
+    }
+
+    .step-card {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent-glow);
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .step-body { flex: 1; }
+
+    .step-body h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .step-body p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .step-connector {
+      width: 2px;
+      height: 2rem;
+      background: var(--border);
+      margin: 0 0 0 23px;
+    }
+
+    /* TIP BOX */
+    .tip-box {
+      background: var(--accent-glow);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin: 0.75rem 0;
+      font-size: 0.9rem;
+      color: var(--text);
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .tip-box .tip-icon {
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    /* CODE STYLE */
+    .word-example {
+      display: inline-block;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-family: monospace;
+      font-size: 1rem;
+      padding: 0.2rem 0.75rem;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    /* STEVE WORK HIGHLIGHT */
+    .steve-highlight {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .phone-mock {
+      background: var(--bg3);
+      border: 2px solid var(--border);
+      border-radius: 28px;
+      padding: 1.5rem 1rem;
+      max-width: 200px;
+      margin: 1.5rem auto;
+    }
+
+    .phone-notch {
+      width: 50px;
+      height: 6px;
+      background: var(--bg);
+      border-radius: 3px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--bg2);
+      border-radius: 10px;
+      padding: 0.65rem;
+      margin-bottom: 0.5rem;
+      text-align: left;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-glow);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.75rem;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .contact-name { font-size: 0.85rem; font-weight: 600; }
+    .contact-num { font-size: 0.75rem; color: var(--muted); }
+
+    .steve-label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    /* CHECKLIST */
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .checklist li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 0.05rem;
+    }
+
+    /* SECTION DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-heading {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.75px;
+      margin-bottom: 1rem;
+    }
+
+    /* CTA FOOTER */
+    .setup-cta {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin: 0 1.5rem 4rem;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .setup-cta h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 0.75rem;
+    }
+
+    .setup-cta p {
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+
+    .store-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.875rem 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .store-btn:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .store-icon { font-size: 1.5rem; }
+    .store-text small { display: block; font-size: 0.7rem; color: var(--muted); }
+    .store-text strong { font-size: 0.95rem; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .step-card { flex-direction: column; gap: 1rem; }
+      .step-connector { margin-left: 23px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Sidedoor</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="setup.html" class="active">Setup Guide</a></li>
+      <li><a href="help.html">Help</a></li>
+    </ul>
+    <a href="index.html#download" class="nav-cta">Download</a>
+  </nav>
+
+  <div class="page-hero">
+    <div class="badge">Setup Guide</div>
+    <h1>Get started in 5 minutes</h1>
+    <p>Whether you're a professional setting your secret word, or a client connecting to someone you trust — this guide walks you through it.</p>
+  </div>
+
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('pro')">I'm a Professional</button>
+    <button class="tab-btn" onclick="switchTab('client')">I'm a Client</button>
+  </div>
+
+  <!-- PROFESSIONAL PANEL -->
+  <div id="panel-pro" class="tab-panel active">
+    <div class="setup-section">
+
+      <p class="section-label">Step by step</p>
+      <h2 class="section-heading">For Professionals</h2>
+      <p style="color: var(--muted); margin-bottom: 2.5rem;">You're the one setting the word. You're the one who decides who gets it. Here's how to get up and running.</p>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Download Sidedoor</h3>
+          <p>Search for <strong>Sidedoor</strong> on the App Store or Google Play, or tap a download link from this site. Install it like any other app.</p>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Create your account</h3>
+          <p>Sign up with your phone number or email. This is your professional account — it links to your contact info so clients can reach you directly.</p>
+          <div class="tip-box">
+            <span class="tip-icon">💡</span>
+            <span>Use the number or email your clients will actually message you on. Whatever you add here is what they'll receive when they connect.</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Set your secret word</h3>
+          <p>Tap <strong>Set my word</strong> in the app. Choose something memorable but not too obvious — this is the key you'll whisper to clients you trust.</p>
+          <p>Good examples: <span class="word-example">mango</span> &nbsp; <span class="word-example">friday</span> &nbsp; <span class="word-example">tiger22</span></p>
+          <p>Avoid: your name, "password", anything a stranger could guess.</p>
+          <div class="tip-box">
+            <span class="tip-icon">🔒</span>
+            <span>You can change your word at any time. Clients who already connected keep your contact — only new connections need the updated word.</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Tell clients — in person, quietly</h3>
+          <p>Next time you see a client you trust: say "Download Sidedoor, type in <span class="word-example">your word</span> — it goes straight to my private number." That's it.</p>
+          <p>No texts with the word in. No writing it down. Just say it.</p>
+          <div class="tip-box">
+            <span class="tip-icon">🗣️</span>
+            <span>The magic of Sidedoor is that there's no digital trail. You said a word. They typed it. No record anywhere.</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>You're done</h3>
+          <p>As clients connect, they'll appear in your connected list inside the app. You can see how many people have your word — and reset it any time if you need to start fresh.</p>
+          <ul class="checklist">
+            <li>Your secret word is active 24/7</li>
+            <li>Clients get your direct contact immediately</li>
+            <li>No notifications, no drama — it just works</li>
+            <li>£1/month. Cancel any time from the app.</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <!-- STEVE WORK -->
+      <p class="section-label">The hidden feature</p>
+      <h2 class="section-heading">The "Steve Work" trick</h2>
+      <p style="color: var(--muted); margin-bottom: 1.5rem;">Here's the detail that surprises people most. On your phone, Sidedoor doesn't appear as an app.</p>
+
+      <div class="steve-highlight">
+        <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 0.5rem;">When a client adds Sidedoor, their contacts look like this:</p>
+        <div class="phone-mock">
+          <div class="phone-notch"></div>
+          <div class="contact-row">
+            <div class="avatar">SW</div>
+            <div>
+              <div class="contact-name">Steve Work</div>
+              <div class="contact-num">07712 000000</div>
+            </div>
+          </div>
+          <div class="contact-row" style="opacity:0.4;">
+            <div class="avatar">DM</div>
+            <div>
+              <div class="contact-name">Dave M</div>
+              <div class="contact-num">07891 112233</div>
+            </div>
+          </div>
+        </div>
+        <p class="steve-label">To anyone glancing at their phone — it's just a contact.<br>No app icon. No logo. Nothing to explain.</p>
+      </div>
+
+      <div class="tip-box">
+        <span class="tip-icon">🤫</span>
+        <span>Clients tap "Steve Work" and the app opens. The name is forgettable on purpose. Nobody asks who Steve Work is — that's the whole point.</span>
+      </div>
+
+      <hr class="divider">
+
+      <p class="section-label">First 10 minutes</p>
+      <h2 class="section-heading">Quick-start checklist</h2>
+      <ul class="checklist" style="margin-top: 1.5rem;">
+        <li>Download Sidedoor ✅</li>
+        <li>Create your professional account</li>
+        <li>Set your secret word — something you'll remember</li>
+        <li>Tell 3 of your most loyal clients today, in person</li>
+        <li>Check back in 24 hours to see how many have connected</li>
+      </ul>
+
+    </div>
+  </div>
+
+  <!-- CLIENT PANEL -->
+  <div id="panel-client" class="tab-panel">
+    <div class="setup-section">
+
+      <p class="section-label">Step by step</p>
+      <h2 class="section-heading">For Clients</h2>
+      <p style="color: var(--muted); margin-bottom: 2.5rem;">Your professional gave you a word. Here's how to use it to get their direct contact — takes about two minutes.</p>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Download Sidedoor — it's free</h3>
+          <p>Search for <strong>Sidedoor</strong> on the App Store or Google Play. Download and install it. Sidedoor is completely free for clients — no subscription, no fees, ever.</p>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Open the app and enter the word</h3>
+          <p>When you open Sidedoor, you'll see a simple box. Type in the secret word your professional gave you — exactly as they said it.</p>
+          <div class="tip-box">
+            <span class="tip-icon">⚠️</span>
+            <span>Words are case-sensitive. If it's not working, check capitals and try again. Still stuck? Ask your professional to confirm the word.</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Get their direct contact instantly</h3>
+          <p>The moment the word matches, you'll receive your professional's direct contact details. Tap to save them to your phone.</p>
+          <p>That's it. You now have their number — no platform, no booking system, no middleman.</p>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>It saves as "Steve Work"</h3>
+          <p>Sidedoor doesn't sit in your app drawer with a logo. Instead, it appears in your contacts as a person called <strong>Steve Work</strong>. Tap that contact and the app opens.</p>
+          <p>Nobody knows it's an app. Nobody asks who Steve Work is. That's the point.</p>
+          <div class="tip-box">
+            <span class="tip-icon">📱</span>
+            <span>Don't delete Steve Work from your contacts — that's how you access Sidedoor. If you delete it, just reinstall the app and re-enter the word.</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+
+      <div class="step-card">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>Follow them anywhere</h3>
+          <p>If your professional moves salon, gym, or company — their Sidedoor contact moves with them. Their number stays the same. You stay connected.</p>
+          <ul class="checklist">
+            <li>Free for clients — always</li>
+            <li>No account needed in most cases</li>
+            <li>No public profile — you're invisible too</li>
+            <li>Works even if they change jobs or locations</li>
+          </ul>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <p class="section-label">Common questions</p>
+      <h2 class="section-heading">Quick answers</h2>
+
+      <div style="display: flex; flex-direction: column; gap: 1.25rem; margin-top: 1.5rem;">
+
+        <div style="background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem;">
+          <h4 style="margin-bottom: 0.5rem;">The word isn't working</h4>
+          <p style="color: var(--muted); font-size: 0.9rem;">Check for capitals and spaces. Words are exact-match. If still broken, ask your professional — they may have reset their word.</p>
+        </div>
+
+        <div style="background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem;">
+          <h4 style="margin-bottom: 0.5rem;">I deleted Steve Work by accident</h4>
+          <p style="color: var(--muted); font-size: 0.9rem;">Re-download Sidedoor and enter the word again. You'll get the contact back instantly.</p>
+        </div>
+
+        <div style="background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem;">
+          <h4 style="margin-bottom: 0.5rem;">Can my employer see I've used this?</h4>
+          <p style="color: var(--muted); font-size: 0.9rem;">No. Sidedoor has no public profiles, no searchable directory, and creates no traceable record. The only thing that happened was: someone said a word, and you typed it.</p>
+        </div>
+
+        <div style="background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem;">
+          <h4 style="margin-bottom: 0.5rem;">Is Sidedoor free?</h4>
+          <p style="color: var(--muted); font-size: 0.9rem;">For clients — yes, always free. Professionals pay £1/month.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DOWNLOAD CTA -->
+  <div class="setup-cta">
+    <h2>Ready to get started?</h2>
+    <p>Professionals for £1/month. Clients always free.</p>
+    <div class="store-buttons">
+      <a href="https://apps.apple.com/app/sidedoor" class="store-btn">
+        <span class="store-icon">🍎</span>
+        <div class="store-text">
+          <small>Download on the</small>
+          <strong>App Store</strong>
+        </div>
+      </a>
+      <a href="https://play.google.com/store/apps/sidedoor" class="store-btn">
+        <span class="store-icon">▶</span>
+        <div class="store-text">
+          <small>Get it on</small>
+          <strong>Google Play</strong>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <p style="color: var(--accent); font-weight: 700; margin-bottom: 0.75rem;">Sidedoor</p>
+    <p style="margin-bottom: 0.75rem;">
+      <a href="index.html">Home</a> &nbsp;·&nbsp;
+      <a href="setup.html">Setup</a> &nbsp;·&nbsp;
+      <a href="help.html">Help</a> &nbsp;·&nbsp;
+      <a href="/privacy">Privacy</a> &nbsp;·&nbsp;
+      <a href="mailto:hello@sidedoor.app">hello@sidedoor.app</a>
+    </p>
+    <p>© 2025 Sidedoor. Find talent. Stay private.</p>
+  </footer>
+
+  <script>
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + tab).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

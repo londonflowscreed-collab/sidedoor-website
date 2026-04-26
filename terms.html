@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — Sidedoor</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --accent: #bf5af2;
+      --accent-dim: rgba(191, 90, 242, 0.15);
+      --accent-glow: rgba(191, 90, 242, 0.25);
+      --text: #f0f0f5;
+      --muted: #8888a8;
+      --border: rgba(191, 90, 242, 0.15);
+      --surface: rgba(255, 255, 255, 0.03);
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(10, 10, 15, 0.75);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── Page Layout ── */
+    .page-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 120px 2rem 80px;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header .subtitle {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .page-header .subtitle span {
+      color: var(--accent);
+    }
+
+    /* ── Sections ── */
+    .policy-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .policy-section h2 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .policy-section p {
+      color: var(--text);
+      margin-bottom: 1rem;
+      font-size: 0.97rem;
+    }
+
+    .policy-section p:last-child { margin-bottom: 0; }
+
+    .policy-section ul, .policy-section ol {
+      padding-left: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .policy-section li {
+      color: var(--text);
+      font-size: 0.97rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .policy-section strong { color: var(--text); font-weight: 600; }
+
+    .policy-section a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .policy-section a:hover { text-decoration: underline; }
+
+    /* Highlight box */
+    .highlight-box {
+      background: var(--accent-dim);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: 1.2rem; }
+      .page-wrap { padding-top: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Sidedoor</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="setup.html">Setup Guide</a></li>
+      <li><a href="help.html">Help</a></li>
+    </ul>
+  </nav>
+
+  <main class="page-wrap">
+
+    <header class="page-header">
+      <h1>Terms of Service</h1>
+      <p class="subtitle">Last updated: <span>April 2025</span></p>
+    </header>
+
+    <div class="policy-section">
+      <div class="highlight-box">
+        Plain English summary: Sidedoor is a contact-sharing tool for professionals and their clients. Use it honestly, within your professional obligations, and don't be a dick. The full version is below.
+      </div>
+    </div>
+
+    <div class="policy-section">
+      <h2>1. About Sidedoor</h2>
+      <p>Sidedoor is a mobile app for iOS and Android that lets professionals share a direct contact method with their clients — and revoke that access whenever they need to. It's operated by <strong>Sidedoor (UK)</strong>.</p>
+      <p>By creating an account and using Sidedoor, you agree to these terms. If you don't agree, please don't use the app.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>2. What Sidedoor Is (and Isn't)</h2>
+      <p>Sidedoor is a <strong>contact-sharing tool</strong>. It lets professionals grant clients a way to reach them directly, and withdraw that access cleanly when the professional relationship ends.</p>
+      <p>Sidedoor is <strong>not</strong>:</p>
+      <ul>
+        <li>A booking or scheduling platform</li>
+        <li>A messaging app</li>
+        <li>A substitute for professional advice or services</li>
+        <li>Responsible for any communications that happen outside the app once a connection is made</li>
+      </ul>
+      <p>We don't intermediate your conversations — we just handle the door.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>3. Who Can Use Sidedoor</h2>
+      <p>To use Sidedoor you must:</p>
+      <ul>
+        <li>Be at least <strong>18 years old</strong></li>
+        <li>Be capable of entering into a legally binding agreement</li>
+        <li>Provide accurate information when creating your account</li>
+      </ul>
+      <p>Sidedoor is available in the UK and internationally. If you're using it outside the UK, you're responsible for ensuring your use complies with local laws.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>4. Professional Accounts</h2>
+      <p>If you're using Sidedoor as a <strong>professional</strong> (i.e. the person sharing their contact), you take on additional responsibilities:</p>
+      <ul>
+        <li><strong>You must have the right to share your contact.</strong> If your employer or professional body restricts how you communicate with clients, it's your responsibility to comply with those rules. Sidedoor doesn't know your employment contract — you do.</li>
+        <li><strong>You're responsible for who you connect with.</strong> When a client uses your secret word to connect, you're giving them a way to reach you. Make sure you're comfortable with that.</li>
+        <li><strong>You're responsible for your secret word.</strong> Keep it secure. Don't share it publicly. If it's been compromised, change it in the app.</li>
+        <li><strong>You choose when to disconnect.</strong> Sidedoor gives you the tools to revoke a client's access. Use them. It's your responsibility to manage your connections.</li>
+      </ul>
+      <p>Sidedoor doesn't verify professional credentials or employment status. We provide the tool; the professional judgement is yours.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>5. Client Accounts</h2>
+      <p>If you're using Sidedoor as a <strong>client</strong> (i.e. the person connecting to a professional):</p>
+      <ul>
+        <li>Only use the secret word if the professional has given it to you directly and intended you to have it.</li>
+        <li>Respect the professional's decision if they disconnect you — that's their right, and Sidedoor exists specifically to enable it.</li>
+        <li>Don't use Sidedoor to harass, spam, or abuse professionals. Doing so may result in your account being suspended.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>6. Subscriptions and Payments</h2>
+      <p><strong>Professionals</strong> pay <strong>£1/month</strong> to use Sidedoor. <strong>Clients</strong> use Sidedoor for free.</p>
+      <ul>
+        <li><strong>Billing:</strong> Subscriptions are billed monthly. Pricing is as shown in the app at the time of purchase.</li>
+        <li><strong>Cancel anytime:</strong> You can cancel your subscription at any time from the app or your device's subscription management settings. Cancellation takes effect at the end of the current billing period.</li>
+        <li><strong>Refunds:</strong> We generally don't offer refunds for partial months. If you believe you're entitled to a refund due to a technical issue or exceptional circumstance, contact us at <a href="mailto:hello@sidedoor.app">hello@sidedoor.app</a> and we'll review it at our discretion.</li>
+        <li><strong>Price changes:</strong> If we change our pricing, we'll give you at least 30 days' notice before any change affects your subscription.</li>
+        <li><strong>Access:</strong> If your subscription lapses, your professional account will be deactivated until you resubscribe. Your data is retained for 90 days before deletion.</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h2>7. Prohibited Uses</h2>
+      <p>You agree not to use Sidedoor to:</p>
+      <ul>
+        <li>Impersonate any person or professional</li>
+        <li>Harass, stalk, threaten, or abuse other users</li>
+        <li>Collect or harvest data from other users without consent</li>
+        <li>Attempt to gain unauthorised access to accounts or our systems</li>
+        <li>Reverse engineer, decompile, or scrape the app</li>
+        <li>Use the service in a way that violates any applicable law or regulation</li>
+        <li>Use another person's secret word without authorisation</li>
+        <li>Create multiple accounts to evade a suspension or ban</li>
+      </ul>
+      <p>We reserve the right to suspend or terminate accounts that violate these terms, without notice in serious cases.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>8. Our Content and Intellectual Property</h2>
+      <p>The Sidedoor app, its design, and its underlying technology are owned by Sidedoor (UK). You're granted a limited, non-exclusive, non-transferable licence to use the app for its intended purpose.</p>
+      <p>You don't own the app and you can't copy, redistribute, or create derivative works from it.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>9. Limitation of Liability</h2>
+      <p>Sidedoor is provided "as is." We don't guarantee the service will be available 100% of the time, error-free, or fit for any particular professional purpose beyond its stated function as a contact-sharing tool.</p>
+      <p>To the fullest extent permitted by law:</p>
+      <ul>
+        <li>We're not liable for any indirect, incidental, or consequential losses arising from your use of the app.</li>
+        <li>We're not responsible for the content of any communications that occur between professionals and clients outside of Sidedoor.</li>
+        <li>We're not responsible if a professional's use of Sidedoor conflicts with their employer's policies — that's between the professional, their employer, and their professional body.</li>
+        <li>Our total liability to you in any 12-month period shall not exceed the total amount you've paid us in that period.</li>
+      </ul>
+      <p>Nothing in these terms limits our liability for death or personal injury caused by negligence, or for fraud.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>10. Changes to the Service</h2>
+      <p>We may update, modify, or discontinue features of Sidedoor at any time. If we're making significant changes that affect how you use the service, we'll give you reasonable notice via the app or email.</p>
+      <p>We may also update these Terms from time to time. If the changes are material, we'll notify you before they take effect. Continuing to use Sidedoor after that point means you accept the updated terms.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>11. Termination</h2>
+      <p>You can stop using Sidedoor and delete your account at any time from the app settings.</p>
+      <p>We can suspend or terminate your account if you breach these terms. In serious cases (e.g. harassment, fraud, abuse), we may act without warning.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>12. Governing Law</h2>
+      <p>These terms are governed by the laws of <strong>England and Wales</strong>. Any disputes will be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+      <p>If you're a consumer and live elsewhere in the UK or EU, you may also have rights under your local law that we can't override.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>13. Contact Us</h2>
+      <p>Questions about these terms? Something unclear? Get in touch:</p>
+      <ul>
+        <li>Email: <a href="mailto:hello@sidedoor.app">hello@sidedoor.app</a></li>
+        <li>Website: <a href="https://sidedoor.app">sidedoor.app</a></li>
+      </ul>
+      <p>We're a small team and we respond to real emails from real people.</p>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Sidedoor</div>
+      <nav class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="setup.html">Setup Guide</a>
+        <a href="help.html">Help</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </nav>
+      <p class="footer-copy">&copy; 2025 Sidedoor (UK). All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

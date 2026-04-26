@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sidedoor — Screenshot Mockups</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #1a1a2e;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      padding: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .label {
+      color: #bf5af2;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* iPhone frame — 390x844 proportional */
+    .phone {
+      width: 280px;
+      background: #0a0a0f;
+      border-radius: 44px;
+      border: 3px solid #2a2a3a;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255,255,255,0.05);
+    }
+
+    .phone-notch {
+      width: 100px;
+      height: 26px;
+      background: #111;
+      border-radius: 0 0 18px 18px;
+      margin: 0 auto 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .phone-screen {
+      padding: 16px 16px 24px;
+      min-height: 560px;
+    }
+
+    /* ─── SCREEN 1: HERO / WORD ENTRY ─── */
+    .s1-logo {
+      text-align: center;
+      padding: 24px 0 16px;
+    }
+
+    .s1-logo .logo-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
+      background: rgba(191, 90, 242, 0.15);
+      border: 1.5px solid rgba(191, 90, 242, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 12px;
+    }
+
+    .s1-logo h1 {
+      color: #f0f0f5;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .s1-logo p {
+      color: #8888a8;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .word-input-box {
+      background: #18181f;
+      border: 1.5px solid rgba(191, 90, 242, 0.3);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 24px 0 12px;
+      text-align: center;
+    }
+
+    .word-input-box .input-label {
+      color: #8888a8;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .word-input-box .input-value {
+      color: #bf5af2;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 6px;
+    }
+
+    .connect-btn {
+      background: #bf5af2;
+      color: #fff;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 700;
+      margin-top: 8px;
+      box-shadow: 0 0 24px rgba(191, 90, 242, 0.4);
+    }
+
+    .s1-hint {
+      color: #8888a8;
+      font-size: 11px;
+      text-align: center;
+      margin-top: 16px;
+      line-height: 1.5;
+    }
+
+    /* ─── SCREEN 2: PROFESSIONAL SETUP ─── */
+    .screen-title {
+      color: #f0f0f5;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+
+    .screen-sub {
+      color: #8888a8;
+      font-size: 11px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .word-display {
+      background: #18181f;
+      border: 1.5px solid rgba(191, 90, 242, 0.3);
+      border-radius: 14px;
+      padding: 20px 16px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .word-display .wd-label {
+      color: #8888a8;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .word-display .wd-word {
+      color: #bf5af2;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .word-display .wd-status {
+      margin-top: 6px;
+      font-size: 10px;
+      color: #4ade80;
+      font-weight: 600;
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .stat-box {
+      flex: 1;
+      background: #18181f;
+      border: 1px solid rgba(191, 90, 242, 0.15);
+      border-radius: 12px;
+      padding: 12px 10px;
+      text-align: center;
+    }
+
+    .stat-box .stat-num {
+      color: #bf5af2;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .stat-box .stat-label {
+      color: #8888a8;
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+
+    .action-btn {
+      background: #18181f;
+      border: 1px solid rgba(191, 90, 242, 0.3);
+      border-radius: 12px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .action-btn .ab-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(191, 90, 242, 0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .action-btn .ab-text { flex: 1; }
+    .action-btn .ab-title { color: #f0f0f5; font-size: 12px; font-weight: 600; }
+    .action-btn .ab-sub { color: #8888a8; font-size: 10px; margin-top: 1px; }
+    .action-btn .ab-arrow { color: #8888a8; font-size: 12px; }
+
+    /* ─── SCREEN 3: CONNECTION SUCCESS ─── */
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(74, 222, 128, 0.15);
+      border: 2px solid rgba(74, 222, 128, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: 32px auto 16px;
+    }
+
+    .success-title {
+      color: #f0f0f5;
+      font-size: 20px;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .success-sub {
+      color: #8888a8;
+      font-size: 12px;
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      padding: 0 8px;
+    }
+
+    .contact-preview {
+      background: #18181f;
+      border: 1px solid rgba(191, 90, 242, 0.2);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .cp-label {
+      color: #8888a8;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .cp-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cp-avatar {
+      width: 40px;
+      height: 40px;
+      background: rgba(191, 90, 242, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 13px;
+      color: #bf5af2;
+      flex-shrink: 0;
+    }
+
+    .cp-name { color: #f0f0f5; font-size: 14px; font-weight: 700; }
+    .cp-num { color: #8888a8; font-size: 11px; margin-top: 2px; }
+
+    .save-btn {
+      background: #bf5af2;
+      color: #fff;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 700;
+      box-shadow: 0 0 20px rgba(191, 90, 242, 0.35);
+    }
+
+    /* ─── SCREEN 4: STEVE WORK ─── */
+    .contacts-header {
+      color: #f0f0f5;
+      font-size: 22px;
+      font-weight: 800;
+      padding: 12px 0 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 8px;
+    }
+
+    .contacts-section-label {
+      color: #8888a8;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 0 6px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .ci-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .ci-name { color: #f0f0f5; font-size: 13px; font-weight: 500; }
+    .ci-num { color: #8888a8; font-size: 11px; }
+
+    .steve-badge {
+      background: rgba(191, 90, 242, 0.15);
+      border: 1px solid rgba(191, 90, 242, 0.4);
+      color: #bf5af2;
+      font-size: 8px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-left: auto;
+    }
+
+    /* ─── SCREEN 5: PRICING ─── */
+    .pricing-hero {
+      text-align: center;
+      padding: 20px 0 16px;
+    }
+
+    .pricing-hero h2 {
+      color: #f0f0f5;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .pricing-hero p {
+      color: #8888a8;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .price-card {
+      background: #18181f;
+      border-radius: 16px;
+      padding: 18px 16px;
+      margin-bottom: 10px;
+      border: 1.5px solid rgba(191, 90, 242, 0.15);
+    }
+
+    .price-card.featured {
+      border-color: #bf5af2;
+      box-shadow: 0 0 24px rgba(191, 90, 242, 0.15);
+    }
+
+    .price-card .pc-tier {
+      color: #bf5af2;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .price-card .pc-price {
+      color: #f0f0f5;
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1;
+    }
+
+    .price-card .pc-price span {
+      font-size: 14px;
+      color: #8888a8;
+      font-weight: 400;
+    }
+
+    .price-card .pc-features {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .price-card .pc-feature {
+      color: #8888a8;
+      font-size: 11px;
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    .price-card .pc-feature::before {
+      content: '✓';
+      color: #bf5af2;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .overlay-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, transparent 100%);
+      padding: 40px 20px 20px;
+      text-align: center;
+    }
+
+    .overlay-caption .cap-headline {
+      color: #f0f0f5;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+
+    .overlay-caption .cap-sub {
+      color: #8888a8;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SCREENSHOT 1: Enter your word -->
+  <div>
+    <div class="label">Screenshot 1 — Client Enter Word</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="s1-logo">
+          <div class="logo-icon">🚪</div>
+          <h1>Sidedoor</h1>
+          <p>Enter the word you were given</p>
+        </div>
+
+        <div class="word-input-box">
+          <div class="input-label">Your secret word</div>
+          <div class="input-value">••••••</div>
+        </div>
+
+        <div class="connect-btn">Connect →</div>
+
+        <div class="s1-hint">
+          Your professional told you this word in person.<br>
+          Type it exactly as they said it.
+        </div>
+      </div>
+      <div class="overlay-caption">
+        <div class="cap-headline">"Set your word. Tell it quietly."</div>
+        <div class="cap-sub">No public profile. No middleman.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREENSHOT 2: Professional dashboard -->
+  <div>
+    <div class="label">Screenshot 2 — Pro Dashboard</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen" style="padding-top: 20px;">
+        <div class="screen-title">Your word is live 🟢</div>
+        <div class="screen-sub">Share it with clients you trust — in person, quietly.</div>
+
+        <div class="word-display">
+          <div class="wd-label">Your secret word</div>
+          <div class="wd-word">mango</div>
+          <div class="wd-status">● Active — clients can connect</div>
+        </div>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <div class="stat-num">24</div>
+            <div class="stat-label">Connected</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">3</div>
+            <div class="stat-label">This week</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">£1</div>
+            <div class="stat-label">Per month</div>
+          </div>
+        </div>
+
+        <div class="action-btn">
+          <div class="ab-icon">🔄</div>
+          <div class="ab-text">
+            <div class="ab-title">Reset my word</div>
+            <div class="ab-sub">Change it anytime</div>
+          </div>
+          <div class="ab-arrow">›</div>
+        </div>
+
+        <div class="action-btn">
+          <div class="ab-icon">👥</div>
+          <div class="ab-text">
+            <div class="ab-title">View connections</div>
+            <div class="ab-sub">24 clients connected</div>
+          </div>
+          <div class="ab-arrow">›</div>
+        </div>
+      </div>
+      <div class="overlay-caption">
+        <div class="cap-headline">"Keep everything you earn."</div>
+        <div class="cap-sub">£1/month. No commissions. Ever.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREENSHOT 3: Connection success -->
+  <div>
+    <div class="label">Screenshot 3 — Connected!</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="success-icon">✓</div>
+        <div class="success-title">You're connected.</div>
+        <div class="success-sub">Their direct contact has been added to your phone. No platform. No booking fee. Just them.</div>
+
+        <div class="contact-preview">
+          <div class="cp-label">Contact saved as</div>
+          <div class="cp-row">
+            <div class="cp-avatar">SW</div>
+            <div>
+              <div class="cp-name">Steve Work</div>
+              <div class="cp-num">07712 345 678</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="save-btn">Save contact →</div>
+      </div>
+      <div class="overlay-caption">
+        <div class="cap-headline">"They connect. You keep the money."</div>
+        <div class="cap-sub">No platform takes a cut.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREENSHOT 4: Steve Work in contacts -->
+  <div>
+    <div class="label">Screenshot 4 — Steve Work</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="contacts-header">Contacts</div>
+
+        <div class="contacts-section-label">R</div>
+        <div class="contact-item">
+          <div class="ci-avatar" style="background: #2a2a3a; color: #8888a8;">RP</div>
+          <div>
+            <div class="ci-name">Rachel P</div>
+            <div class="ci-num">07800 111 222</div>
+          </div>
+        </div>
+
+        <div class="contacts-section-label">S</div>
+        <div class="contact-item">
+          <div class="ci-avatar" style="background: #8888a8; color: #0a0a0f;">SB</div>
+          <div>
+            <div class="ci-name">Sam B</div>
+            <div class="ci-num">07900 222 333</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-avatar" style="background: rgba(191,90,242,0.2); color: #bf5af2; border: 1px solid rgba(191,90,242,0.4);">SW</div>
+          <div>
+            <div class="ci-name">Steve Work</div>
+            <div class="ci-num">Tap to open Sidedoor</div>
+          </div>
+          <div class="steve-badge">Sidedoor</div>
+        </div>
+
+        <div class="contacts-section-label">T</div>
+        <div class="contact-item">
+          <div class="ci-avatar" style="background: #2a4a3a; color: #4ade80;">TK</div>
+          <div>
+            <div class="ci-name">Tom K</div>
+            <div class="ci-num">07700 444 555</div>
+          </div>
+        </div>
+      </div>
+      <div class="overlay-caption">
+        <div class="cap-headline">"Hidden in plain sight."</div>
+        <div class="cap-sub">Looks like a contact. Nobody asks questions.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREENSHOT 5: Pricing -->
+  <div>
+    <div class="label">Screenshot 5 — Pricing</div>
+    <div class="phone">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <div class="pricing-hero">
+          <h2>Simple pricing.</h2>
+          <p>One price for professionals.<br>Always free for clients.</p>
+        </div>
+
+        <div class="price-card featured">
+          <div class="pc-tier">Professional</div>
+          <div class="pc-price">£1 <span>/ month</span></div>
+          <div class="pc-features">
+            <div class="pc-feature">Your own secret word</div>
+            <div class="pc-feature">Unlimited client connections</div>
+            <div class="pc-feature">No booking commissions. Ever.</div>
+            <div class="pc-feature">Reset your word anytime</div>
+            <div class="pc-feature">Cancel with one tap</div>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="pc-tier">Client</div>
+          <div class="pc-price">Free <span>always</span></div>
+          <div class="pc-features">
+            <div class="pc-feature">Enter any professional's word</div>
+            <div class="pc-feature">Get their direct contact</div>
+            <div class="pc-feature">Follow them wherever they go</div>
+          </div>
+        </div>
+      </div>
+      <div class="overlay-caption">
+        <div class="cap-headline">"£1/month. Keep everything you earn."</div>
+        <div class="cap-sub">Less than a coffee. More than a platform gives you.</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

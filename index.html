@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sidedoor — Find Talent. Stay Private.</title>
+  <meta name="description" content="Sidedoor connects clients with their favourite professionals — privately. No public profiles. No middlemen. Just a secret word." />
+  <meta property="og:title" content="Sidedoor — Find Talent. Stay Private." />
+  <meta property="og:description" content="The private networking app for professionals who work for themselves, even when they work for someone else." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#bf5af2" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0a0f;
+      --bg2:       #111118;
+      --bg3:       #18181f;
+      --accent:    #bf5af2;
+      --accent2:   #9b3dd4;
+      --accent-glow: rgba(191, 90, 242, 0.18);
+      --text:      #f0f0f5;
+      --muted:     #8888a8;
+      --border:    rgba(191, 90, 242, 0.15);
+      --radius:    14px;
+      --font:      -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(191, 90, 242, 0.12) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent-glow);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      max-width: 800px;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 4rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.875rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(191, 90, 242, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent2);
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(191, 90, 242, 0.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--bg3);
+      color: var(--text);
+      padding: 0.875rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .hero-proof {
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    .hero-proof strong { color: var(--text); }
+
+    /* ─── SECTION SHARED ─── */
+    section { padding: 5rem 1.5rem; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .section-heading {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how-section { background: var(--bg2); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .step {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .step:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    .step-number {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--accent);
+      opacity: 0.3;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .step h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .step p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+
+    /* ─── FOR PROS ─── */
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .feature-list li {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .feature-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 8px;
+      background: var(--accent-glow);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .feature-list li div p { color: var(--muted); font-size: 0.9rem; margin-top: 0.2rem; }
+
+    .visual-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .visual-card::before {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(191, 90, 242, 0.15) 0%, transparent 70%);
+      top: -50px;
+      right: -50px;
+    }
+
+    .phone-mock {
+      background: var(--bg2);
+      border: 2px solid var(--border);
+      border-radius: 24px;
+      padding: 1.5rem 1rem;
+      margin: 0 auto;
+      max-width: 220px;
+      font-size: 0.85rem;
+    }
+
+    .phone-top {
+      width: 60px;
+      height: 8px;
+      background: var(--bg3);
+      border-radius: 4px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem;
+      background: var(--bg3);
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+      text-align: left;
+    }
+
+    .contact-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent-glow);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .contact-name { font-weight: 600; font-size: 0.85rem; }
+    .contact-num { color: var(--muted); font-size: 0.75rem; }
+
+    .unlock-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-top: 1rem;
+      text-align: left;
+    }
+
+    .unlock-label { color: var(--muted); font-size: 0.75rem; margin-bottom: 0.5rem; }
+
+    .unlock-input {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .unlock-dots {
+      letter-spacing: 4px;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+
+    .unlock-btn {
+      background: var(--accent);
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 0.35rem 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* ─── PRICING ─── */
+    .pricing-section { background: var(--bg2); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .pricing-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--accent);
+      box-shadow: 0 0 40px rgba(191, 90, 242, 0.15);
+    }
+
+    .pricing-card:hover { transform: translateY(-4px); }
+
+    .pricing-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .pricing-price {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .pricing-period { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 3rem;
+      max-width: 720px;
+    }
+
+    .faq-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font);
+    }
+
+    .faq-question::after {
+      content: '+';
+      color: var(--accent);
+      font-size: 1.4rem;
+      font-weight: 300;
+      flex-shrink: 0;
+    }
+
+    .faq-answer {
+      padding: 0 1.5rem 1.25rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      text-align: center;
+      padding: 6rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(191, 90, 242, 0.1) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .store-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.875rem 1.5rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .store-btn:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .store-icon { font-size: 1.75rem; line-height: 1; }
+
+    .store-text small { display: block; color: var(--muted); font-size: 0.7rem; letter-spacing: 0.05em; margin-bottom: 0.1rem; }
+    .store-text strong { font-size: 1rem; font-weight: 700; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem; }
+      .nav-links { display: none; }
+
+      .split {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .split .visual-card { order: -1; }
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">Sidedoor</span>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="setup.html">Setup Guide</a></li>
+      <li><a href="help.html">Help</a></li>
+    </ul>
+    <a href="#download" class="nav-cta">Get the app</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">🔒 Now available on iOS &amp; Android</div>
+    <h1>Find talent.<br /><span>Stay private.</span></h1>
+    <p class="hero-sub">
+      Sidedoor connects clients with their favourite professionals — without public profiles, booking platforms, or middlemen.
+    </p>
+    <div class="hero-buttons">
+      <a href="#download" class="btn-primary">
+        <span>📲</span> Download free
+      </a>
+      <a href="#how-it-works" class="btn-secondary">
+        How it works →
+      </a>
+    </div>
+    <p class="hero-proof">
+      <strong>Hairdressers. PTs. Beauticians. Tradespeople.</strong><br />
+      The professionals your clients love — now findable without the salon taking a cut.
+    </p>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section" id="how-it-works">
+    <div class="container">
+      <p class="section-label">How it works</p>
+      <h2 class="section-heading">Three steps. Completely private.</h2>
+      <p class="section-sub">No profiles. No public directory. Just a word and a number.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">01</div>
+          <h3>Professional sets a secret word</h3>
+          <p>When you sign up, you choose your secret word. It's yours — unique to you. No one finds you unless they know it.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">02</div>
+          <h3>Tell it to clients you trust</h3>
+          <p>In person. Quietly. To clients you want to keep. They write it down, they remember it, they have it. Nothing digital, nothing traceable.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">03</div>
+          <h3>Client types it. Gets your number.</h3>
+          <p>They open Sidedoor, type your word, and there's your contact — direct. No algorithm, no booking fee, no platform taking 20%.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR PROFESSIONALS -->
+  <section id="for-pros">
+    <div class="container">
+      <div class="split">
+        <div>
+          <p class="section-label">For professionals</p>
+          <h2 class="section-heading">You built your clients.<br />Keep them.</h2>
+          <p class="section-sub">You spent years earning trust. Sidedoor makes sure that trust lives with you — not your employer.</p>
+
+          <ul class="feature-list">
+            <li>
+              <div class="feature-icon">🔒</div>
+              <div>
+                <strong>Zero public profile</strong>
+                <p>You can't be Googled, searched, or found on Sidedoor. You're invisible unless you hand out your word.</p>
+              </div>
+            </li>
+            <li>
+              <div class="feature-icon">👻</div>
+              <div>
+                <strong>Hidden in plain sight</strong>
+                <p>On your clients' phones, Sidedoor appears as "Steve Work" — a normal contact. No logo. No app icon. Nothing to explain.</p>
+              </div>
+            </li>
+            <li>
+              <div class="feature-icon">💷</div>
+              <div>
+                <strong>£1/month. That's it.</strong>
+                <p>No commission. No booking fees. No percentage of your earnings. You keep everything you make.</p>
+              </div>
+            </li>
+            <li>
+              <div class="feature-icon">🔄</div>
+              <div>
+                <strong>Change your word anytime</strong>
+                <p>If your word ever feels compromised, reset it. Existing connected clients keep your number; new access requires the new word.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="visual-card">
+          <p style="color: var(--muted); font-size: 0.8rem; margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 0.08em;">On your client's phone</p>
+          <div class="phone-mock">
+            <div class="phone-top"></div>
+            <div class="contact-row">
+              <div class="contact-avatar">SW</div>
+              <div>
+                <div class="contact-name">Steve Work</div>
+                <div class="contact-num">mobile · +44 7700 ••••••</div>
+              </div>
+            </div>
+            <div class="unlock-box">
+              <div class="unlock-label">Enter secret word to unlock</div>
+              <div class="unlock-input">
+                <span class="unlock-dots">••••••</span>
+                <button class="unlock-btn">Go</button>
+              </div>
+            </div>
+          </div>
+          <p style="color: var(--muted); font-size: 0.78rem; margin-top: 1.25rem;">Nothing to find. Nothing to explain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR CLIENTS -->
+  <section style="background: var(--bg2);" id="for-clients">
+    <div class="container">
+      <div class="split">
+        <div class="visual-card">
+          <p style="color: var(--muted); font-size: 0.8rem; margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 0.08em;">What clients get</p>
+          <div style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
+            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem;">
+              <div style="color: var(--accent); font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">DIRECT ACCESS</div>
+              <div style="font-size: 0.9rem;">Your hairdresser's actual number. Not the salon. Not a booking widget. Her.</div>
+            </div>
+            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem;">
+              <div style="color: var(--accent); font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">NO MIDDLEMAN MARKUP</div>
+              <div style="font-size: 0.9rem;">When professionals aren't paying 40% commission, they can afford to charge you less.</div>
+            </div>
+            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem;">
+              <div style="color: var(--accent); font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">COMPLETELY FREE</div>
+              <div style="font-size: 0.9rem;">Clients never pay anything. Just download, type the word, done.</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="section-label">For clients</p>
+          <h2 class="section-heading">Your favourite professional. Direct.</h2>
+          <p class="section-sub">When your hairdresser leaves the salon, your PT moves gym, or your electrician goes solo — you don't lose them anymore.</p>
+
+          <ul class="feature-list" style="margin-top: 1.75rem;">
+            <li>
+              <div class="feature-icon">✨</div>
+              <div>
+                <strong>Always free for clients</strong>
+                <p>Download Sidedoor, enter the word your professional gave you, done. No subscription needed.</p>
+              </div>
+            </li>
+            <li>
+              <div class="feature-icon">📍</div>
+              <div>
+                <strong>Follow the person, not the place</strong>
+                <p>When they move, you move with them. No more re-booking through a new salon's system and hoping for the same person.</p>
+              </div>
+            </li>
+            <li>
+              <div class="feature-icon">🤫</div>
+              <div>
+                <strong>Private by design</strong>
+                <p>You're not creating a public account. No profile. No reviews to leave. No social feed. Just a connection.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-section" id="pricing">
+    <div class="container" style="text-align: center;">
+      <p class="section-label">Pricing</p>
+      <h2 class="section-heading">Simple. Honest. Cheap.</h2>
+      <p class="section-sub" style="margin: 0 auto;">The platform that doesn't take a cut deserves a platform that's affordable. One pound a month. That's our deal.</p>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-label">For clients</div>
+          <div class="pricing-price">£0</div>
+          <div class="pricing-period">forever</div>
+          <ul class="pricing-features">
+            <li>Download Sidedoor free</li>
+            <li>Enter secret words from professionals</li>
+            <li>Access direct contact details</li>
+            <li>Follow professionals when they move</li>
+            <li>No account required to browse</li>
+          </ul>
+          <a href="#download" class="btn-secondary" style="width: 100%; justify-content: center;">Download free</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <div class="pricing-label">⭐ For professionals</div>
+          <div class="pricing-price">£1</div>
+          <div class="pricing-period">per month — cancel anytime</div>
+          <ul class="pricing-features">
+            <li>Set your unique secret word</li>
+            <li>Change your word anytime</li>
+            <li>Zero commission on bookings</li>
+            <li>Hidden profile — no public listing</li>
+            <li>Disguised as "Steve Work" contact</li>
+            <li>Unlimited connected clients</li>
+          </ul>
+          <a href="#download" class="btn-primary" style="width: 100%; justify-content: center;">Start for £1/month</a>
+        </div>
+      </div>
+
+      <p style="color: var(--muted); font-size: 0.875rem; margin-top: 2rem;">
+        No setup fees. No hidden costs. Cancel anytime from the app.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-heading">Straight answers.</h2>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question">Is Sidedoor actually private? Can my employer find me on it?</button>
+          <div class="faq-answer">
+            Yes, genuinely private. There is no public directory, no searchable profiles, and no way to find a professional unless you know their specific secret word. Your employer would need to know your word, download the app, type it in, and even then they'd just see your contact details — which they probably already have.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">What does "hidden as Steve Work" mean?</button>
+          <div class="faq-answer">
+            On a client's phone, Sidedoor doesn't appear as an app with a logo. Instead, it's saved as a contact called "Steve Work." When they tap it, the app opens. To anyone casually looking at their phone, it just looks like a regular contact entry.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">What if I want to change my secret word?</button>
+          <div class="faq-answer">
+            You can reset your word at any time from your profile settings. Clients who have already connected with you through the old word retain access — they still have your contact. New connections will need the updated word.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Can clients find each other through the app?</button>
+          <div class="faq-answer">
+            No. Clients have zero visibility into other users. They type a word, they get a professional's contact. That's the entirety of the interaction. There's no social layer, no reviews, no profiles.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Is it legal to use Sidedoor while employed?</button>
+          <div class="faq-answer">
+            Sidedoor is a private contact-sharing tool. Whether you can take on private clients depends entirely on your employment contract — specifically whether it contains non-compete or non-solicitation clauses. Most restrict you from actively soliciting your employer's clients; they don't restrict clients from finding you. We recommend reading your contract and making your own informed decision.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">Why is it called "Steve Work"?</button>
+          <div class="faq-answer">
+            Because "Steve Work" is about the most forgettable, unremarkable name for a contact. Nobody's going to ask who Steve Work is. That's the point. It's camouflage.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">What happens if I cancel my subscription?</button>
+          <div class="faq-answer">
+            Your word deactivates. Clients who try to use it will see no result. Your existing connections (people who already have your number) are unaffected — they still have your contact. You can reactivate any time and your word becomes active again.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD CTA -->
+  <section class="cta-section" id="download">
+    <div class="container">
+      <h2>Your clients are waiting.<br />Go get them.</h2>
+      <p>Download Sidedoor now. Professionals start for £1/month. Clients are always free.</p>
+
+      <div class="store-buttons">
+        <a href="https://apps.apple.com/app/sidedoor" class="store-btn">
+          <span class="store-icon">🍎</span>
+          <div class="store-text">
+            <small>Download on the</small>
+            <strong>App Store</strong>
+          </div>
+        </a>
+        <a href="https://play.google.com/store/apps/sidedoor" class="store-btn">
+          <span class="store-icon">▶</span>
+          <div class="store-text">
+            <small>Get it on</small>
+            <strong>Google Play</strong>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p style="color: var(--accent); font-weight: 700; font-size: 1rem; margin-bottom: 1rem;">Sidedoor</p>
+      <p style="margin-bottom: 1rem;">
+        <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp;
+        <a href="/terms">Terms of Service</a> &nbsp;·&nbsp;
+        <a href="mailto:hello@sidedoor.app">hello@sidedoor.app</a>
+      </p>
+      <p>© 2025 Sidedoor. Find talent. Stay private.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

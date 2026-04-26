@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Help & FAQ — Sidedoor</title>
+  <meta name="description" content="Help centre for Sidedoor. Answers for professionals and clients." />
+  <meta name="theme-color" content="#bf5af2" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0a0f;
+      --bg2:       #111118;
+      --bg3:       #18181f;
+      --accent:    #bf5af2;
+      --accent2:   #9b3dd4;
+      --accent-glow: rgba(191, 90, 242, 0.18);
+      --text:      #f0f0f5;
+      --muted:     #8888a8;
+      --border:    rgba(191, 90, 242, 0.15);
+      --radius:    14px;
+      --font:      -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 15, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--accent2); }
+
+    .page-hero {
+      padding: 9rem 1.5rem 4rem;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent-glow);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3rem 0.9rem;
+      border-radius: 100px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    /* SEARCH (visual only for now) */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.875rem 1.25rem;
+      max-width: 500px;
+      margin: 0 auto 4rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      cursor: text;
+    }
+
+    /* CATEGORIES */
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto 5rem;
+      padding: 0 1.5rem;
+    }
+
+    .help-category {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, transform 0.15s;
+      display: block;
+    }
+
+    .help-category:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+
+    .cat-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .cat-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .cat-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.6; }
+
+    /* FAQ SECTIONS */
+    .faq-section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+    }
+
+    .faq-section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+
+    .faq-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 0.975rem;
+      font-weight: 600;
+      text-align: left;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-family: var(--font);
+      transition: color 0.2s;
+    }
+
+    .faq-question:hover { color: var(--accent); }
+
+    .faq-arrow {
+      font-size: 0.75rem;
+      color: var(--muted);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    .faq-answer {
+      display: none;
+      padding: 0 1.5rem 1.25rem;
+      color: var(--muted);
+      font-size: 0.925rem;
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    .faq-item.open .faq-answer { display: block; }
+
+    .faq-answer a { color: var(--accent); }
+
+    /* CONTACT */
+    .contact-section {
+      background: var(--bg2);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      text-align: center;
+      margin: 0 1.5rem 5rem;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid var(--border);
+    }
+
+    .contact-section h2 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 0.75rem;
+    }
+
+    .contact-section p {
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.875rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .email-btn:hover {
+      background: var(--accent2);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Sidedoor</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="setup.html">Setup Guide</a></li>
+      <li><a href="help.html" class="active">Help</a></li>
+    </ul>
+    <a href="index.html#download" class="nav-cta">Download</a>
+  </nav>
+
+  <div class="page-hero">
+    <div class="badge">Help Centre</div>
+    <h1>How can we help?</h1>
+    <p>Find answers below, or drop us an email if you're stuck.</p>
+  </div>
+
+  <div class="search-bar">
+    🔍 &nbsp; Search for answers...
+  </div>
+
+  <!-- CATEGORY CARDS -->
+  <div class="help-grid">
+    <a href="#getting-started" class="help-category">
+      <div class="cat-icon">🚀</div>
+      <div class="cat-title">Getting Started</div>
+      <div class="cat-desc">Download, account setup, and your first connection.</div>
+    </a>
+    <a href="#professionals" class="help-category">
+      <div class="cat-icon">🔑</div>
+      <div class="cat-title">For Professionals</div>
+      <div class="cat-desc">Secret words, subscriptions, and managing clients.</div>
+    </a>
+    <a href="#clients" class="help-category">
+      <div class="cat-icon">📱</div>
+      <div class="cat-title">For Clients</div>
+      <div class="cat-desc">Entering words, Steve Work, and staying connected.</div>
+    </a>
+    <a href="#privacy" class="help-category">
+      <div class="cat-icon">🛡️</div>
+      <div class="cat-title">Privacy & Security</div>
+      <div class="cat-desc">Who can see what, and how your data is handled.</div>
+    </a>
+    <a href="#billing" class="help-category">
+      <div class="cat-icon">💳</div>
+      <div class="cat-title">Billing & Subscription</div>
+      <div class="cat-desc">Pricing, cancellation, and refunds.</div>
+    </a>
+    <a href="#troubleshooting" class="help-category">
+      <div class="cat-icon">🔧</div>
+      <div class="cat-title">Troubleshooting</div>
+      <div class="cat-desc">Something not working? Start here.</div>
+    </a>
+  </div>
+
+  <!-- GETTING STARTED -->
+  <div class="faq-section" id="getting-started">
+    <h2 class="faq-section-title">🚀 Getting Started</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What is Sidedoor? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Sidedoor is a private contact-sharing app for professionals and their clients. Professionals set a secret word. They tell it to clients in person. Clients download Sidedoor, type the word, and instantly get the professional's direct contact — no booking platform, no commission, no middleman.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How do I download it? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Search "Sidedoor" on the App Store (iPhone) or Google Play (Android). Download and install it like any other app. It's free to download for both professionals and clients.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Do I need an account? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Professionals need an account — this is where you set your secret word and manage your subscription. Clients in most cases just need to enter the word; a lightweight account may be created automatically to track your connections.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is there a web version? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Not yet — Sidedoor is currently a mobile app only. A web companion is planned for a future update.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOR PROFESSIONALS -->
+  <div class="faq-section" id="professionals">
+    <h2 class="faq-section-title">🔑 For Professionals</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How do I set my secret word? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          After signing up as a professional, tap "Set my word" on the home screen. Choose anything memorable — a random word, a number combo, anything that's not too obvious. Confirm it, and it's live immediately.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Can I change my secret word? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Yes — go to Profile → Reset Word. Clients who already connected with your old word keep your contact. Only new connections will need the updated word. Use this if you think your word has been shared too widely.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How should I tell clients my word? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          In person, quietly. That's the whole point. Don't text it, don't write it down, don't put it on Instagram. Say it once, face to face, to clients you trust. "Download Sidedoor, type in [word] — it goes straight to me."
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How many clients can connect to me? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Unlimited. There's no cap on how many clients can connect using your word. One word, as many trusted clients as you want.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Can I have multiple secret words? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Not in the current version — one word per professional. Multiple words (for different client groups) is planned for a future Pro tier update.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is it legal to use Sidedoor while I'm employed? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Sidedoor is a private contact-sharing tool. Whether you can take on private clients depends entirely on your employment contract — specifically any non-compete or non-solicitation clauses. Most contracts restrict actively soliciting your employer's clients; they don't restrict clients from finding you. Read your contract and make your own informed decision. We don't give legal advice.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOR CLIENTS -->
+  <div class="faq-section" id="clients">
+    <h2 class="faq-section-title">📱 For Clients</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          I entered the word but nothing happened <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Words are exact-match and case-sensitive. Check: (1) correct spelling, (2) no extra spaces, (3) capitals match what you were told. Still not working? Ask your professional to confirm their word — they may have reset it.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What is "Steve Work"? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Sidedoor doesn't appear as an app with a logo on your phone. Instead, it saves itself as a contact called "Steve Work." Tap that contact and the app opens. It's designed to look unremarkable — nobody asks who Steve Work is. That's the point.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          I deleted Steve Work by accident <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Reinstall Sidedoor from the App Store or Google Play, and enter your professional's word again. You'll get their contact back immediately and Steve Work will reappear in your contacts.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          My professional moved — do I still have their number? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Yes. Once you've connected, you have their direct contact. If they update their number in Sidedoor, you'll get the update too (depending on how they've set up their profile). Either way, you're connected to the person — not the place.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is Sidedoor free for clients? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Yes. Always free. No subscription, no in-app purchases. Clients never pay anything.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PRIVACY -->
+  <div class="faq-section" id="privacy">
+    <h2 class="faq-section-title">🛡️ Privacy & Security</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Can my employer find me on Sidedoor? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          No. There is no public directory, no searchable profiles, and no way to find a professional without knowing their exact secret word. You are invisible to anyone who doesn't have your word.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Does Sidedoor sell my data? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          No. We don't build advertising profiles, we don't sell data to third parties, and we don't index your information publicly. Read our full <a href="/privacy">Privacy Policy</a> for details.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is there any record of connections made? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Sidedoor keeps the minimum data needed to run the service. The connection event (word matched, contact delivered) is logged internally for app function — not surfaced publicly, not visible to employers, not sold.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How do I delete my account? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Go to Profile → Settings → Delete Account. This deactivates your word and removes your data. If you're a professional, your connected clients retain any contacts they already saved.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BILLING -->
+  <div class="faq-section" id="billing">
+    <h2 class="faq-section-title">💳 Billing & Subscription</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How much does Sidedoor cost? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Professionals pay £1/month. That's it. Clients are always free. No setup fee, no annual lock-in.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How do I cancel my subscription? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Go to Profile → Subscription → Cancel. You can cancel any time — no questions, no retention flow. Your word stays active until the end of the billing period, then deactivates.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What happens when I cancel? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Your secret word deactivates. New clients won't be able to connect with it. Clients who already connected still have your contact — that doesn't disappear. You can reactivate any time and your word becomes live again.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Can I get a refund? <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          We handle refunds case by case. Email <a href="mailto:hello@sidedoor.app">hello@sidedoor.app</a> and we'll sort it out.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TROUBLESHOOTING -->
+  <div class="faq-section" id="troubleshooting">
+    <h2 class="faq-section-title">🔧 Troubleshooting</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          The app won't open <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Try: (1) force-close and reopen, (2) restart your phone, (3) delete and reinstall Sidedoor. If it still won't open, email us at <a href="mailto:hello@sidedoor.app">hello@sidedoor.app</a> with your device model and OS version.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          I'm not receiving the contact after entering the word <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Check you have a network connection. Make sure the word is exact (case-sensitive, no spaces). If it says "word not found," the professional may have reset their word — ask them for the new one.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Steve Work isn't appearing in my contacts <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Sidedoor needs permission to access your contacts to save Steve Work. Go to your phone Settings → Sidedoor → Contacts → Allow. Then re-enter the word in the app.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          I can't log in to my account <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-answer">
+          Use the "Forgot?" link on the login screen to reset your access. If you signed up with a phone number, you'll get a verification code. Still locked out? Email <a href="mailto:hello@sidedoor.app">hello@sidedoor.app</a>.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-section">
+    <h2>Still need help?</h2>
+    <p>We're a small team and we actually read every email.</p>
+    <a href="mailto:hello@sidedoor.app" class="email-btn">✉️ &nbsp; Email hello@sidedoor.app</a>
+  </div>
+
+  <footer>
+    <p style="color: var(--accent); font-weight: 700; margin-bottom: 0.75rem;">Sidedoor</p>
+    <p style="margin-bottom: 0.75rem;">
+      <a href="index.html">Home</a> &nbsp;·&nbsp;
+      <a href="setup.html">Setup</a> &nbsp;·&nbsp;
+      <a href="help.html">Help</a> &nbsp;·&nbsp;
+      <a href="/privacy">Privacy</a> &nbsp;·&nbsp;
+      <a href="mailto:hello@sidedoor.app">hello@sidedoor.app</a>
+    </p>
+    <p>© 2025 Sidedoor. Find talent. Stay private.</p>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.parentElement;
+      item.classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
