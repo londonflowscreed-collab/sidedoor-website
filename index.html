@@ -3,91 +3,215 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sidedoor — Find Talent. Stay Private.</title>
-  <meta name="description" content="Sidedoor connects clients with their favourite professionals — privately. No public profiles. No middlemen. Just a secret word." />
-  <meta property="og:title" content="Sidedoor — Find Talent. Stay Private." />
-  <meta property="og:description" content="The private networking app for professionals who work for themselves, even when they work for someone else." />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#bf5af2" />
+  <title>Sidedoor — Private Professional Networking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
+    /* ─── Reset & Base ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0a0a0f;
-      --bg2:       #111118;
-      --bg3:       #18181f;
-      --accent:    #bf5af2;
-      --accent2:   #9b3dd4;
-      --accent-glow: rgba(191, 90, 242, 0.18);
-      --text:      #f0f0f5;
-      --muted:     #8888a8;
-      --border:    rgba(191, 90, 242, 0.15);
-      --radius:    14px;
-      --font:      -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --bg: #0a0a0f;
+      --bg-2: #0f0f17;
+      --bg-3: #13131e;
+      --accent: #bf5af2;
+      --accent-dim: rgba(191, 90, 242, 0.15);
+      --accent-glow: rgba(191, 90, 242, 0.35);
+      --accent-2: #9b44d4;
+      --white: #ffffff;
+      --gray-1: #f5f5f7;
+      --gray-2: #a1a1b5;
+      --gray-3: #4a4a6a;
+      --gray-4: #1e1e2e;
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(191, 90, 242, 0.5);
+      --radius: 16px;
+      --radius-lg: 24px;
+      --font: 'Inter', -apple-system, sans-serif;
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--bg);
-      color: var(--text);
       font-family: var(--font);
+      background: var(--bg);
+      color: var(--white);
       line-height: 1.6;
+      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ─── NAV ─── */
+    /* ─── Scrollbar ─────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--gray-3); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+    /* ─── Scroll Animations ─────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── Typography ────────────────────────────────────────────── */
+    h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; }
+    h2 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; }
+    h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700; letter-spacing: -0.015em; }
+    p { color: var(--gray-2); }
+
+    .accent-gradient {
+      background: linear-gradient(135deg, #bf5af2 0%, #e879f9 50%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─── Layout ────────────────────────────────────────────────── */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section { position: relative; overflow: hidden; }
+
+    /* ─── NAV ───────────────────────────────────────────────────── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 1000;
+      padding: 0 24px;
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1rem 2rem;
-      background: rgba(10, 10, 15, 0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(10, 10, 15, 0.7);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
       border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
     }
 
     .nav-logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: var(--accent);
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--accent);
+      flex-shrink: 0;
     }
 
     .nav-links {
       display: flex;
-      gap: 2rem;
+      align-items: center;
+      gap: 36px;
       list-style: none;
     }
 
     .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
       font-size: 0.875rem;
-      transition: color 0.2s;
+      font-weight: 500;
+      color: var(--gray-2);
+      text-decoration: none;
+      transition: color var(--transition);
+      letter-spacing: -0.01em;
     }
-
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover { color: var(--white); }
 
     .nav-cta {
       background: var(--accent);
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1.25rem;
-      border-radius: 8px;
-      font-size: 0.875rem;
-      font-weight: 600;
-      cursor: pointer;
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 0.875rem !important;
+      font-weight: 600 !important;
       text-decoration: none;
-      transition: background 0.2s, transform 0.1s;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition) !important;
+      box-shadow: 0 0 0 0 var(--accent-glow);
+    }
+    .nav-cta:hover {
+      background: #c96ff5 !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px var(--accent-glow) !important;
+      color: var(--white) !important;
     }
 
-    .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* ─── HERO ─── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      background: rgba(10, 10, 15, 0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 24px;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 999;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--gray-2);
+      text-decoration: none;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--white); }
+    .mobile-menu .nav-cta {
+      text-align: center;
+      padding: 14px 20px;
+      border-bottom: none;
+      color: var(--white) !important;
+    }
+
+    /* ─── HERO ──────────────────────────────────────────────────── */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -95,818 +219,1679 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 6rem 1.5rem 4rem;
+      padding: 120px 24px 80px;
       position: relative;
-      overflow: hidden;
     }
 
-    .hero::before {
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Radial glow */
+    .hero-bg::before {
       content: '';
       position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(191, 90, 242, 0.12) 0%, transparent 70%);
-      top: 50%;
+      top: -10%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
+      width: 800px;
+      height: 600px;
+      background: radial-gradient(ellipse at center, rgba(191, 90, 242, 0.18) 0%, transparent 70%);
       pointer-events: none;
     }
 
+    /* Dot grid */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(191, 90, 242, 0.15) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+    }
+
     .hero-badge {
-      display: inline-block;
-      background: var(--accent-glow);
-      border: 1px solid var(--border);
-      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(191, 90, 242, 0.1);
+      border: 1px solid rgba(191, 90, 242, 0.3);
+      padding: 6px 16px;
+      border-radius: 100px;
       font-size: 0.8rem;
       font-weight: 600;
-      padding: 0.35rem 1rem;
-      border-radius: 100px;
+      color: var(--accent);
+      margin-bottom: 32px;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      margin-bottom: 2rem;
+    }
+
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent-glow); }
+      50% { opacity: 0.7; box-shadow: 0 0 0 6px transparent; }
     }
 
     .hero h1 {
-      font-size: clamp(2.5rem, 7vw, 5rem);
-      font-weight: 800;
-      letter-spacing: -2px;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      max-width: 800px;
+      margin-bottom: 24px;
     }
-
-    .hero h1 span { color: var(--accent); }
 
     .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.25rem);
-      color: var(--muted);
-      max-width: 520px;
-      margin-bottom: 3rem;
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      color: var(--gray-2);
+      max-width: 640px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+      font-weight: 400;
     }
 
-    .hero-buttons {
+    .hero-ctas {
       display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
+      align-items: center;
       justify-content: center;
-      margin-bottom: 4rem;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
     }
 
     .btn-primary {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 8px;
       background: var(--accent);
-      color: #fff;
-      padding: 0.875rem 2rem;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 700;
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-size: 0.95rem;
+      font-weight: 600;
       text-decoration: none;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 0 30px rgba(191, 90, 242, 0.3);
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 0 0 0 var(--accent-glow);
+      letter-spacing: -0.01em;
     }
-
     .btn-primary:hover {
-      background: var(--accent2);
+      background: #c96ff5;
       transform: translateY(-2px);
-      box-shadow: 0 0 40px rgba(191, 90, 242, 0.45);
+      box-shadow: 0 8px 32px var(--accent-glow);
     }
 
     .btn-secondary {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      background: var(--bg3);
-      color: var(--text);
-      padding: 0.875rem 2rem;
-      border-radius: 12px;
-      font-size: 1rem;
+      gap: 8px;
+      background: rgba(255,255,255,0.05);
+      color: var(--white);
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-size: 0.95rem;
       font-weight: 600;
       text-decoration: none;
       border: 1px solid var(--border);
-      transition: border-color 0.2s, transform 0.15s;
+      transition: background var(--transition), transform var(--transition), border-color var(--transition);
+      letter-spacing: -0.01em;
     }
-
     .btn-secondary:hover {
-      border-color: var(--accent);
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.15);
       transform: translateY(-2px);
     }
 
-    .hero-proof {
-      color: var(--muted);
-      font-size: 0.875rem;
+    /* Ticker */
+    .ticker-wrap {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+    .ticker-wrap::before,
+    .ticker-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .ticker-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg), transparent);
+    }
+    .ticker-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg), transparent);
     }
 
-    .hero-proof strong { color: var(--text); }
+    .ticker {
+      display: flex;
+      gap: 0;
+      animation: ticker-scroll 30s linear infinite;
+      width: max-content;
+    }
 
-    /* ─── SECTION SHARED ─── */
-    section { padding: 5rem 1.5rem; }
+    @keyframes ticker-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 28px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gray-3);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    .ticker-sep {
+      width: 4px; height: 4px;
+      background: var(--gray-3);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ─── SECTION HEADER ────────────────────────────────────────── */
+    .section-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 64px;
     }
 
     .section-label {
-      font-size: 0.8rem;
+      display: inline-block;
+      font-size: 0.75rem;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1rem;
+      margin-bottom: 16px;
     }
 
-    .section-heading {
-      font-size: clamp(1.75rem, 4vw, 2.75rem);
-      font-weight: 800;
-      letter-spacing: -1px;
-      line-height: 1.15;
-      margin-bottom: 1.25rem;
-    }
-
-    .section-sub {
-      color: var(--muted);
+    .section-header p {
       font-size: 1.1rem;
-      max-width: 520px;
-      line-height: 1.7;
+      margin-top: 16px;
+      color: var(--gray-2);
     }
 
-    /* ─── HOW IT WORKS ─── */
-    .how-section { background: var(--bg2); }
+    /* ─── HOW IT WORKS ──────────────────────────────────────────── */
+    .how-it-works {
+      padding: 120px 0;
+      background: var(--bg);
+    }
 
-    .steps {
+    .steps-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 3.5rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
     }
 
-    .step {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
+    .step-card {
       position: relative;
-      transition: border-color 0.2s, transform 0.2s;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      cursor: default;
     }
 
-    .step:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
+    .step-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(191,90,242,0.5), rgba(232,121,249,0.3), transparent 60%);
+      opacity: 0;
+      transition: opacity var(--transition);
+      z-index: 0;
+      pointer-events: none;
     }
+
+    .step-card:hover::before { opacity: 1; }
+    .step-card:hover {
+      border-color: transparent;
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(191, 90, 242, 0.15);
+    }
+
+    .step-card > * { position: relative; z-index: 1; }
 
     .step-number {
-      font-size: 3rem;
+      position: absolute;
+      top: 20px; right: 28px;
+      font-size: 7rem;
       font-weight: 900;
-      color: var(--accent);
-      opacity: 0.3;
+      color: rgba(255,255,255,0.03);
       line-height: 1;
-      margin-bottom: 1rem;
+      letter-spacing: -0.05em;
+      pointer-events: none;
+      user-select: none;
+      transition: color var(--transition);
     }
 
-    .step h3 {
+    .step-card:hover .step-number {
+      color: rgba(191, 90, 242, 0.06);
+    }
+
+    .step-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(191, 90, 242, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .step-icon svg {
+      width: 22px; height: 22px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .step-card h3 {
+      margin-bottom: 12px;
+      color: var(--white);
       font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 0.75rem;
     }
 
-    .step p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+    .step-card p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
 
-    /* ─── FOR PROS ─── */
-    .split {
+    /* ─── SPLIT SECTIONS ────────────────────────────────────────── */
+    .split-section {
+      padding: 120px 0;
+    }
+
+    .split-section:nth-child(odd) {
+      background: var(--bg-2);
+    }
+
+    .split-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 80px;
       align-items: center;
+    }
+
+    .split-inner.reversed {
+      direction: rtl;
+    }
+    .split-inner.reversed > * {
+      direction: ltr;
+    }
+
+    .split-copy h2 { margin-bottom: 20px; }
+    .split-copy > p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 36px;
     }
 
     .feature-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
-      margin-top: 2rem;
+      gap: 16px;
     }
 
     .feature-list li {
       display: flex;
-      gap: 1rem;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 0.95rem;
+      color: var(--gray-2);
+      line-height: 1.5;
+    }
+
+    .feature-list li::before {
+      content: '';
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      background: var(--accent-dim);
+      border: 1px solid rgba(191, 90, 242, 0.3);
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23bf5af2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 10l3.5 3.5L15 7'/%3E%3C/svg%3E");
+      background-size: contain;
+      margin-top: 2px;
+    }
+
+    .benefit-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .benefit-item {
+      display: flex;
+      gap: 20px;
       align-items: flex-start;
     }
 
-    .feature-icon {
-      width: 2rem;
-      height: 2rem;
-      border-radius: 8px;
-      background: var(--accent-glow);
-      border: 1px solid var(--border);
+    .benefit-icon {
+      width: 44px; height: 44px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(191, 90, 242, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      font-size: 1rem;
     }
 
-    .feature-list li div p { color: var(--muted); font-size: 0.9rem; margin-top: 0.2rem; }
+    .benefit-icon svg {
+      width: 20px; height: 20px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
-    .visual-card {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 2.5rem;
-      text-align: center;
+    .benefit-text h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .benefit-text p {
+      font-size: 0.9rem;
+      color: var(--gray-2);
+      line-height: 1.55;
+    }
+
+    /* ─── iPhone MOCKUP ─────────────────────────────────────────── */
+    .iphone-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .iphone {
+      width: 260px;
+      height: 520px;
+      background: #0d0d14;
+      border-radius: 44px;
+      border: 2px solid rgba(255,255,255,0.12);
       position: relative;
+      box-shadow:
+        0 40px 80px rgba(0,0,0,0.6),
+        0 0 0 1px rgba(255,255,255,0.05),
+        inset 0 0 0 1px rgba(255,255,255,0.03);
       overflow: hidden;
     }
 
-    .visual-card::before {
+    .iphone::before {
       content: '';
       position: absolute;
-      width: 200px;
-      height: 200px;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 120px; height: 28px;
+      background: #0d0d14;
+      border-radius: 0 0 20px 20px;
+      border: 2px solid rgba(255,255,255,0.12);
+      border-top: none;
+      z-index: 10;
+    }
+
+    /* Side button highlights */
+    .iphone::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 44px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .iphone-screen {
+      position: absolute;
+      inset: 0;
+      border-radius: 42px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 50px 24px 32px;
+    }
+
+    /* Unlock screen */
+    .iphone-unlock .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .status-time {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .status-icons {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+    }
+
+    .status-bar-dot {
+      width: 6px; height: 6px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(191, 90, 242, 0.15) 0%, transparent 70%);
-      top: -50px;
-      right: -50px;
+      background: rgba(255,255,255,0.5);
     }
 
-    .phone-mock {
-      background: var(--bg2);
-      border: 2px solid var(--border);
-      border-radius: 24px;
-      padding: 1.5rem 1rem;
-      margin: 0 auto;
-      max-width: 220px;
-      font-size: 0.85rem;
-    }
-
-    .phone-top {
-      width: 60px;
-      height: 8px;
-      background: var(--bg3);
-      border-radius: 4px;
-      margin: 0 auto 1.5rem;
-    }
-
-    .contact-row {
+    .iphone-app-icon {
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+      border: 1px solid rgba(255,255,255,0.08);
+      margin: 0 auto 16px;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 0.75rem;
-      background: var(--bg3);
-      border-radius: 10px;
-      margin-bottom: 0.5rem;
-      text-align: left;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .app-icon-letter {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.05em;
+    }
+
+    .iphone-app-name {
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 4px;
+    }
+
+    .iphone-tagline {
+      text-align: center;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 32px;
+    }
+
+    .iphone-input-wrap {
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .iphone-input {
+      width: 100%;
+      background: rgba(191, 90, 242, 0.1);
+      border: 1.5px solid rgba(191, 90, 242, 0.5);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 0.8rem;
+      font-family: var(--font);
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.05em;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .iphone-cursor {
+      display: inline-block;
+      width: 2px; height: 12px;
+      background: var(--accent);
+      border-radius: 1px;
+      vertical-align: middle;
+      animation: blink 1s infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .iphone-btn {
+      width: 100%;
+      background: var(--accent);
+      border: none;
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      font-family: var(--font);
+      color: white;
+      cursor: default;
+      box-shadow: 0 4px 20px rgba(191, 90, 242, 0.4);
+      letter-spacing: -0.01em;
+    }
+
+    .iphone-hint {
+      text-align: center;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.25);
+      margin-top: 12px;
+    }
+
+    /* Result screen */
+    .iphone-result .iphone-result-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .result-check {
+      width: 48px; height: 48px;
+      background: rgba(52, 199, 89, 0.15);
+      border: 1px solid rgba(52, 199, 89, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+    }
+
+    .result-check svg {
+      width: 22px; height: 22px;
+      stroke: #34c759;
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .result-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .result-sub {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 12px;
     }
 
     .contact-avatar {
-      width: 36px;
-      height: 36px;
+      width: 36px; height: 36px;
       border-radius: 50%;
-      background: var(--accent-glow);
-      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--accent), #e879f9);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.8rem;
+      font-weight: 800;
+      color: white;
+      float: left;
+      margin-right: 12px;
+    }
+
+    .contact-info { overflow: hidden; }
+
+    .contact-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--white);
+      display: block;
+    }
+
+    .contact-role {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.4);
+      display: block;
+    }
+
+    .phone-reveal {
+      background: rgba(191, 90, 242, 0.08);
+      border: 1px solid rgba(191, 90, 242, 0.2);
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .phone-number {
+      font-size: 0.8rem;
+      font-weight: 600;
       color: var(--accent);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      letter-spacing: 0.05em;
+    }
+
+    .phone-label {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .iphone-action-btn {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: var(--font);
+      color: rgba(255,255,255,0.7);
+      cursor: default;
+      text-align: center;
+    }
+
+    /* ─── THE DISGUISE ──────────────────────────────────────────── */
+    .disguise-section {
+      padding: 120px 0;
+      background: var(--bg);
+    }
+
+    .disguise-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .disguise-inner h2 { margin-bottom: 20px; }
+    .disguise-inner > p {
+      font-size: 1.05rem;
+      color: var(--gray-2);
+      line-height: 1.7;
+      max-width: 560px;
+      margin: 0 auto 48px;
+    }
+
+    .disguise-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .disguise-card-label {
+      font-size: 0.75rem;
       font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .disguise-card h3 {
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .disguise-card p {
+      font-size: 0.95rem;
+      color: var(--gray-2);
+      line-height: 1.65;
+    }
+
+    .app-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .app-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 10px 20px;
+      transition: border-color var(--transition), transform var(--transition), background var(--transition);
+    }
+
+    .app-badge:hover {
+      border-color: rgba(191, 90, 242, 0.3);
+      background: rgba(191, 90, 242, 0.05);
+      transform: translateY(-2px);
+    }
+
+    .badge-icon {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
     }
 
-    .contact-name { font-weight: 600; font-size: 0.85rem; }
-    .contact-num { color: var(--muted); font-size: 0.75rem; }
-
-    .unlock-box {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1rem;
-      margin-top: 1rem;
-      text-align: left;
+    .badge-icon svg {
+      width: 15px; height: 15px;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
     }
 
-    .unlock-label { color: var(--muted); font-size: 0.75rem; margin-bottom: 0.5rem; }
+    .badge-calc { background: rgba(255, 149, 0, 0.15); border: 1px solid rgba(255, 149, 0, 0.2); }
+    .badge-calc svg { stroke: #ff9500; }
+    .badge-weather { background: rgba(48, 209, 88, 0.15); border: 1px solid rgba(48, 209, 88, 0.2); }
+    .badge-weather svg { stroke: #30d158; }
+    .badge-torch { background: rgba(255, 214, 10, 0.15); border: 1px solid rgba(255, 214, 10, 0.2); }
+    .badge-torch svg { stroke: #ffd60a; }
+    .badge-files { background: rgba(10, 132, 255, 0.15); border: 1px solid rgba(10, 132, 255, 0.2); }
+    .badge-files svg { stroke: #0a84ff; }
+    .badge-compass { background: rgba(255, 55, 95, 0.15); border: 1px solid rgba(255, 55, 95, 0.2); }
+    .badge-compass svg { stroke: #ff375f; }
+    .badge-notes { background: rgba(255, 214, 10, 0.15); border: 1px solid rgba(255, 214, 10, 0.2); }
+    .badge-notes svg { stroke: #ffd60a; }
 
-    .unlock-input {
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
+    .badge-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gray-2);
     }
 
-    .unlock-dots {
-      letter-spacing: 4px;
-      color: var(--accent);
-      font-size: 1.2rem;
+    /* ─── PRICING ───────────────────────────────────────────────── */
+    .pricing-section {
+      padding: 120px 0;
+      background: var(--bg-2);
     }
-
-    .unlock-btn {
-      background: var(--accent);
-      border: none;
-      border-radius: 6px;
-      color: #fff;
-      font-size: 0.75rem;
-      padding: 0.35rem 0.7rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    /* ─── PRICING ─── */
-    .pricing-section { background: var(--bg2); }
 
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 760px;
+      margin: 0 auto;
     }
 
     .pricing-card {
-      background: var(--bg3);
+      background: var(--bg-3);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2.5rem 2rem;
-      text-align: center;
-      transition: border-color 0.2s, transform 0.2s;
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      position: relative;
+      transition: transform var(--transition), border-color var(--transition);
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
     }
 
     .pricing-card.featured {
-      border-color: var(--accent);
-      box-shadow: 0 0 40px rgba(191, 90, 242, 0.15);
+      border-color: rgba(191, 90, 242, 0.4);
+      background: linear-gradient(135deg, rgba(191, 90, 242, 0.06) 0%, var(--bg-3) 100%);
+      box-shadow: 0 0 60px rgba(191, 90, 242, 0.1), inset 0 1px 0 rgba(191, 90, 242, 0.2);
     }
 
-    .pricing-card:hover { transform: translateY(-4px); }
+    .pricing-card.featured:hover {
+      border-color: rgba(191, 90, 242, 0.7);
+      box-shadow: 0 20px 60px rgba(191, 90, 242, 0.2), inset 0 1px 0 rgba(191, 90, 242, 0.3);
+    }
 
-    .pricing-label {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .pricing-tag {
+      display: inline-block;
+      background: rgba(191, 90, 242, 0.15);
+      border: 1px solid rgba(191, 90, 242, 0.3);
       color: var(--accent);
-      margin-bottom: 1rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+
+    .pricing-card-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray-3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
     }
 
     .pricing-price {
-      font-size: 3.5rem;
+      font-size: 3rem;
       font-weight: 900;
-      letter-spacing: -2px;
+      letter-spacing: -0.04em;
+      color: var(--white);
       line-height: 1;
-      margin-bottom: 0.25rem;
+      margin-bottom: 8px;
     }
 
-    .pricing-period { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+    .pricing-price span {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--gray-2);
+      letter-spacing: 0;
+    }
+
+    .pricing-desc {
+      font-size: 0.9rem;
+      color: var(--gray-2);
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
 
     .pricing-features {
       list-style: none;
-      text-align: left;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
+      gap: 12px;
+      margin-bottom: 32px;
     }
 
     .pricing-features li {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      font-size: 0.95rem;
-      color: var(--muted);
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--gray-2);
     }
 
     .pricing-features li::before {
-      content: '✓';
-      color: var(--accent);
-      font-weight: 700;
+      content: '';
+      width: 18px; height: 18px;
       flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--accent-dim);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none' stroke='%23bf5af2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 9l3 3 6-6'/%3E%3C/svg%3E");
+      background-size: contain;
     }
 
-    /* ─── FAQ ─── */
+    .pricing-cta {
+      display: block;
+      text-align: center;
+      padding: 13px;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .pricing-cta-secondary {
+      background: rgba(255,255,255,0.05);
+      color: var(--white);
+      border: 1px solid var(--border);
+    }
+    .pricing-cta-secondary:hover {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .pricing-cta-primary {
+      background: var(--accent);
+      color: var(--white);
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+    .pricing-cta-primary:hover {
+      background: #c96ff5;
+      box-shadow: 0 8px 32px var(--accent-glow);
+      transform: translateY(-1px);
+    }
+
+    /* ─── FAQ ───────────────────────────────────────────────────── */
+    .faq-section {
+      padding: 120px 0;
+      background: var(--bg);
+    }
+
     .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      margin-top: 3rem;
-      max-width: 720px;
+      gap: 12px;
     }
 
     .faq-item {
-      background: var(--bg3);
+      background: var(--bg-2);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
+      transition: border-color var(--transition);
+    }
+
+    .faq-item.open {
+      border-color: rgba(191, 90, 242, 0.3);
     }
 
     .faq-question {
-      width: 100%;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1rem;
-      font-weight: 600;
-      text-align: left;
-      padding: 1.25rem 1.5rem;
-      cursor: pointer;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      font-family: var(--font);
+      justify-content: space-between;
+      padding: 22px 28px;
+      cursor: pointer;
+      user-select: none;
+      gap: 16px;
     }
 
-    .faq-question::after {
-      content: '+';
-      color: var(--accent);
-      font-size: 1.4rem;
-      font-weight: 300;
+    .faq-question h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.4;
+    }
+
+    .faq-chevron {
+      width: 24px; height: 24px;
       flex-shrink: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--transition), background var(--transition);
+    }
+
+    .faq-chevron svg {
+      width: 12px; height: 12px;
+      stroke: var(--gray-2);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke var(--transition);
+    }
+
+    .faq-item.open .faq-chevron {
+      transform: rotate(180deg);
+      background: var(--accent-dim);
+    }
+
+    .faq-item.open .faq-chevron svg {
+      stroke: var(--accent);
     }
 
     .faq-answer {
-      padding: 0 1.5rem 1.25rem;
-      color: var(--muted);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-answer-inner {
+      padding: 0 28px 24px;
+    }
+
+    .faq-answer-inner p {
       font-size: 0.95rem;
+      color: var(--gray-2);
       line-height: 1.7;
     }
 
-    /* ─── CTA SECTION ─── */
-    .cta-section {
-      text-align: center;
-      padding: 6rem 1.5rem;
+    /* ─── DOWNLOAD CTA ──────────────────────────────────────────── */
+    .download-section {
+      padding: 100px 24px;
+      background: var(--bg-2);
       position: relative;
       overflow: hidden;
     }
 
-    .cta-section::before {
+    .download-section::before {
       content: '';
       position: absolute;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(191, 90, 242, 0.1) 0%, transparent 70%);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      inset: 0;
+      background: linear-gradient(135deg, rgba(191,90,242,0.12) 0%, rgba(232,121,249,0.06) 50%, transparent 100%);
       pointer-events: none;
     }
 
-    .cta-section h2 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      font-weight: 800;
-      letter-spacing: -1.5px;
-      margin-bottom: 1rem;
+    .download-section::after {
+      content: '';
+      position: absolute;
+      top: -50%; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(191,90,242,0.15) 0%, transparent 70%);
+      pointer-events: none;
     }
 
-    .cta-section p {
-      color: var(--muted);
+    .download-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .download-inner h2 { margin-bottom: 16px; }
+    .download-inner p {
       font-size: 1.1rem;
-      max-width: 480px;
-      margin: 0 auto 2.5rem;
+      color: var(--gray-2);
+      margin-bottom: 40px;
     }
 
     .store-buttons {
       display: flex;
-      gap: 1rem;
       justify-content: center;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
     .store-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 0.875rem 1.5rem;
+      gap: 12px;
+      background: var(--white);
+      color: #0a0a0f;
+      padding: 14px 24px;
+      border-radius: 14px;
       text-decoration: none;
-      color: var(--text);
-      transition: border-color 0.2s, transform 0.15s;
+      transition: transform var(--transition), box-shadow var(--transition);
+      min-width: 160px;
     }
 
     .store-btn:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
     }
 
-    .store-icon { font-size: 1.75rem; line-height: 1; }
+    .store-btn-icon {
+      width: 28px; height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
 
-    .store-text small { display: block; color: var(--muted); font-size: 0.7rem; letter-spacing: 0.05em; margin-bottom: 0.1rem; }
-    .store-text strong { font-size: 1rem; font-weight: 700; }
+    .store-btn-icon svg {
+      width: 24px; height: 24px;
+      fill: #0a0a0f;
+    }
 
-    /* ─── FOOTER ─── */
+    .store-btn-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .store-btn-sub {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      opacity: 0.6;
+    }
+
+    .store-btn-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────── */
     footer {
+      background: var(--bg);
       border-top: 1px solid var(--border);
-      padding: 2.5rem 1.5rem;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.85rem;
+      padding: 48px 24px;
     }
 
-    footer a { color: var(--muted); text-decoration: none; }
-    footer a:hover { color: var(--accent); }
+    .footer-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 768px) {
-      nav { padding: 1rem; }
-      .nav-links { display: none; }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.03em;
+    }
 
-      .split {
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.875rem;
+      color: var(--gray-3);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover { color: var(--gray-2); }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--gray-3);
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .steps-grid {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 16px;
       }
 
-      .split .visual-card { order: -1; }
+      .split-inner,
+      .split-inner.reversed {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        direction: ltr;
+      }
+
+      .iphone-wrap { order: -1; }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+      }
     }
 
-    /* ─── SCROLLBAR ─── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-right { display: none; }
+      .hamburger { display: flex; }
+
+      h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
+
+      .hero { padding: 100px 24px 60px; }
+
+      .iphone { width: 220px; height: 440px; }
+
+      .disguise-card { padding: 28px 24px; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 480px) {
+      .pricing-grid { max-width: 100%; }
+      .app-badges { gap: 8px; }
+      .store-buttons { flex-direction: column; align-items: center; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <span class="nav-logo">Sidedoor</span>
+  <!-- ─── NAV ──────────────────────────────────────────────────────────── -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">
+      <span class="nav-logo-dot"></span>
+      Sidedoor
+    </a>
+
     <ul class="nav-links">
-      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#how">How it works</a></li>
       <li><a href="#pricing">Pricing</a></li>
-      <li><a href="setup.html">Setup Guide</a></li>
-      <li><a href="help.html">Help</a></li>
+      <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="#download" class="nav-cta">Get the app</a>
+
+    <div class="nav-right">
+      <a href="#download" class="nav-cta">Get the app</a>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-badge">🔒 Now available on iOS &amp; Android</div>
-    <h1>Find talent.<br /><span>Stay private.</span></h1>
-    <p class="hero-sub">
-      Sidedoor connects clients with their favourite professionals — without public profiles, booking platforms, or middlemen.
-    </p>
-    <div class="hero-buttons">
-      <a href="#download" class="btn-primary">
-        <span>📲</span> Download free
-      </a>
-      <a href="#how-it-works" class="btn-secondary">
-        How it works →
-      </a>
-    </div>
-    <p class="hero-proof">
-      <strong>Hairdressers. PTs. Beauticians. Tradespeople.</strong><br />
-      The professionals your clients love — now findable without the salon taking a cut.
-    </p>
-  </section>
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#how" class="mobile-link">How it works</a>
+    <a href="#pricing" class="mobile-link">Pricing</a>
+    <a href="#faq" class="mobile-link">FAQ</a>
+    <a href="#download" class="nav-cta">Get the app</a>
+  </div>
 
-  <!-- HOW IT WORKS -->
-  <section class="how-section" id="how-it-works">
-    <div class="container">
-      <p class="section-label">How it works</p>
-      <h2 class="section-heading">Three steps. Completely private.</h2>
-      <p class="section-sub">No profiles. No public directory. Just a word and a number.</p>
+  <!-- ─── HERO ──────────────────────────────────────────────────────────── -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
 
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">01</div>
-          <h3>Professional sets a secret word</h3>
-          <p>When you sign up, you choose your secret word. It's yours — unique to you. No one finds you unless they know it.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">02</div>
-          <h3>Tell it to clients you trust</h3>
-          <p>In person. Quietly. To clients you want to keep. They write it down, they remember it, they have it. Nothing digital, nothing traceable.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">03</div>
-          <h3>Client types it. Gets your number.</h3>
-          <p>They open Sidedoor, type your word, and there's your contact — direct. No algorithm, no booking fee, no platform taking 20%.</p>
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <span class="hero-badge-dot"></span>
+        Private Professional Networking
+      </div>
+
+      <h1 class="reveal reveal-delay-1">
+        Your clients.<br/>
+        <span class="accent-gradient">Your word.</span><br/>
+        Your rules.
+      </h1>
+
+      <p class="hero-sub reveal reveal-delay-2">
+        The private networking app for professionals who work for themselves — even when they work for someone else.
+      </p>
+
+      <div class="hero-ctas reveal reveal-delay-3">
+        <a href="#download" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          Download free
+        </a>
+        <a href="#how" class="btn-secondary">
+          See how it works
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="ticker-wrap reveal reveal-delay-4">
+        <div class="ticker" id="ticker">
+          <!-- Items duplicated in JS for infinite loop -->
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOR PROFESSIONALS -->
-  <section id="for-pros">
+  <!-- ─── HOW IT WORKS ─────────────────────────────────────────────────── -->
+  <section class="how-it-works" id="how">
     <div class="container">
-      <div class="split">
-        <div>
-          <p class="section-label">For professionals</p>
-          <h2 class="section-heading">You built your clients.<br />Keep them.</h2>
-          <p class="section-sub">You spent years earning trust. Sidedoor makes sure that trust lives with you — not your employer.</p>
+      <div class="section-header reveal">
+        <span class="section-label">How it works</span>
+        <h2>Three steps. Zero awkward asks.</h2>
+        <p>No business cards. No LinkedIn requests. No begging colleagues for referrals. Just a word.</p>
+      </div>
 
+      <div class="steps-grid">
+        <div class="step-card reveal reveal-delay-1">
+          <div class="step-number">1</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3>Set your word</h3>
+          <p>Choose a secret word — anything you like. This is the key your clients use to find your number. Only you decide who gets it.</p>
+        </div>
+
+        <div class="step-card reveal reveal-delay-2">
+          <div class="step-number">2</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Tell clients in person</h3>
+          <p>When you meet someone you want to stay connected with, simply tell them your secret word. That's the entire introduction.</p>
+        </div>
+
+        <div class="step-card reveal reveal-delay-3">
+          <div class="step-number">3</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <h3>They type, they connect</h3>
+          <p>They open the app, enter your word, and your phone number appears. Instant. Private. Completely on your terms.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOR PROFESSIONALS ────────────────────────────────────────────── -->
+  <section class="split-section" id="professionals" style="background: var(--bg-2);">
+    <div class="container">
+      <div class="split-inner">
+
+        <div class="split-copy reveal">
+          <span class="section-label">For professionals</span>
+          <h2>Your network. Your private door.</h2>
+          <p>You're good at what you do. The last thing you need is your employer finding out you're building a client list on the side. Sidedoor gives you a completely private channel — no social media, no paper trail.</p>
           <ul class="feature-list">
-            <li>
-              <div class="feature-icon">🔒</div>
-              <div>
-                <strong>Zero public profile</strong>
-                <p>You can't be Googled, searched, or found on Sidedoor. You're invisible unless you hand out your word.</p>
-              </div>
-            </li>
-            <li>
-              <div class="feature-icon">👻</div>
-              <div>
-                <strong>Hidden in plain sight</strong>
-                <p>On your clients' phones, Sidedoor appears as "Steve Work" — a normal contact. No logo. No app icon. Nothing to explain.</p>
-              </div>
-            </li>
-            <li>
-              <div class="feature-icon">💷</div>
-              <div>
-                <strong>£1/month. That's it.</strong>
-                <p>No commission. No booking fees. No percentage of your earnings. You keep everything you make.</p>
-              </div>
-            </li>
-            <li>
-              <div class="feature-icon">🔄</div>
-              <div>
-                <strong>Change your word anytime</strong>
-                <p>If your word ever feels compromised, reset it. Existing connected clients keep your number; new access requires the new word.</p>
-              </div>
-            </li>
+            <li>Total control over who gets your number</li>
+            <li>Your word changes the moment you want a fresh start</li>
+            <li>Hidden from your employer — disguised as "Steve Work" in contacts</li>
+            <li>£1 per month. Cancel any time.</li>
           </ul>
         </div>
 
-        <div class="visual-card">
-          <p style="color: var(--muted); font-size: 0.8rem; margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 0.08em;">On your client's phone</p>
-          <div class="phone-mock">
-            <div class="phone-top"></div>
-            <div class="contact-row">
-              <div class="contact-avatar">SW</div>
-              <div>
-                <div class="contact-name">Steve Work</div>
-                <div class="contact-num">mobile · +44 7700 ••••••</div>
+        <div class="iphone-wrap reveal reveal-delay-2">
+          <div class="iphone">
+            <div class="iphone-screen iphone-unlock">
+              <div class="status-bar">
+                <span class="status-time">9:41</span>
+                <div class="status-icons">
+                  <span class="status-bar-dot"></span>
+                  <span class="status-bar-dot"></span>
+                  <span class="status-bar-dot"></span>
+                </div>
               </div>
-            </div>
-            <div class="unlock-box">
-              <div class="unlock-label">Enter secret word to unlock</div>
-              <div class="unlock-input">
-                <span class="unlock-dots">••••••</span>
-                <button class="unlock-btn">Go</button>
+
+              <div class="iphone-app-icon">
+                <span class="app-icon-letter">S</span>
               </div>
+              <div class="iphone-app-name">Sidedoor</div>
+              <div class="iphone-tagline">Enter the word to connect</div>
+
+              <div class="iphone-input-wrap">
+                <div class="iphone-input">sunflower<span class="iphone-cursor"></span></div>
+              </div>
+
+              <button class="iphone-btn">Find them</button>
+
+              <div class="iphone-hint">Only people with the right word can reach you</div>
             </div>
           </div>
-          <p style="color: var(--muted); font-size: 0.78rem; margin-top: 1.25rem;">Nothing to find. Nothing to explain.</p>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- FOR CLIENTS -->
-  <section style="background: var(--bg2);" id="for-clients">
+  <!-- ─── FOR CLIENTS ──────────────────────────────────────────────────── -->
+  <section class="split-section" id="clients" style="background: var(--bg);">
     <div class="container">
-      <div class="split">
-        <div class="visual-card">
-          <p style="color: var(--muted); font-size: 0.8rem; margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 0.08em;">What clients get</p>
-          <div style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
-            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem;">
-              <div style="color: var(--accent); font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">DIRECT ACCESS</div>
-              <div style="font-size: 0.9rem;">Your hairdresser's actual number. Not the salon. Not a booking widget. Her.</div>
-            </div>
-            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem;">
-              <div style="color: var(--accent); font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">NO MIDDLEMAN MARKUP</div>
-              <div style="font-size: 0.9rem;">When professionals aren't paying 40% commission, they can afford to charge you less.</div>
-            </div>
-            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 1rem;">
-              <div style="color: var(--accent); font-size: 0.8rem; font-weight: 700; margin-bottom: 0.4rem;">COMPLETELY FREE</div>
-              <div style="font-size: 0.9rem;">Clients never pay anything. Just download, type the word, done.</div>
+      <div class="split-inner reversed">
+
+        <div class="split-copy reveal">
+          <span class="section-label">For clients</span>
+          <h2>Find the people who helped you.</h2>
+          <p>Your hairdresser moved salons. Your personal trainer went independent. Your physio set up their own practice. If they gave you a word, you can find their number — no middlemen, no expired links.</p>
+          <ul class="benefit-list">
+            <li class="benefit-item">
+              <div class="benefit-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              </div>
+              <div class="benefit-text">
+                <h4>Completely free for clients</h4>
+                <p>Download the app, type the word, get the number. No subscription, no sign-up friction.</p>
+              </div>
+            </li>
+            <li class="benefit-item">
+              <div class="benefit-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="benefit-text">
+                <h4>Private by design</h4>
+                <p>No data harvesting. No recommending you to strangers. The word stays between you and them.</p>
+              </div>
+            </li>
+            <li class="benefit-item">
+              <div class="benefit-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <div class="benefit-text">
+                <h4>Works across all industries</h4>
+                <p>Hairdressers, trainers, coaches, physios, tutors, decorators — if they use Sidedoor, you can reach them.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="iphone-wrap reveal reveal-delay-2">
+          <div class="iphone">
+            <div class="iphone-screen iphone-result">
+              <div class="status-bar">
+                <span class="status-time">9:41</span>
+                <div class="status-icons">
+                  <span class="status-bar-dot"></span>
+                  <span class="status-bar-dot"></span>
+                  <span class="status-bar-dot"></span>
+                </div>
+              </div>
+
+              <div class="iphone-result-header">
+                <div class="result-check">
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div class="result-title">Word accepted</div>
+                <div class="result-sub">Here's their number</div>
+              </div>
+
+              <div class="contact-card">
+                <div class="contact-avatar">JA</div>
+                <div class="contact-info">
+                  <span class="contact-name">Jamie Anderson</span>
+                  <span class="contact-role">Personal Trainer · London</span>
+                </div>
+                <div style="clear:both;"></div>
+              </div>
+
+              <div class="phone-reveal">
+                <div>
+                  <div class="phone-number">+44 7700 900 123</div>
+                  <div class="phone-label">Direct number</div>
+                </div>
+              </div>
+
+              <div class="iphone-action-btn">Save to contacts</div>
             </div>
           </div>
         </div>
 
-        <div>
-          <p class="section-label">For clients</p>
-          <h2 class="section-heading">Your favourite professional. Direct.</h2>
-          <p class="section-sub">When your hairdresser leaves the salon, your PT moves gym, or your electrician goes solo — you don't lose them anymore.</p>
+      </div>
+    </div>
+  </section>
 
-          <ul class="feature-list" style="margin-top: 1.75rem;">
-            <li>
-              <div class="feature-icon">✨</div>
-              <div>
-                <strong>Always free for clients</strong>
-                <p>Download Sidedoor, enter the word your professional gave you, done. No subscription needed.</p>
+  <!-- ─── THE DISGUISE ─────────────────────────────────────────────────── -->
+  <section class="disguise-section" id="disguise">
+    <div class="container">
+      <div class="disguise-inner">
+        <div class="reveal">
+          <span class="section-label">The disguise</span>
+          <h2>Hidden in plain sight.</h2>
+          <p>Sidedoor doesn't announce itself. It lives quietly on your phone under the name "Steve Work" — and it can disguise its icon as something completely unremarkable.</p>
+        </div>
+
+        <div class="disguise-card reveal reveal-delay-1">
+          <div class="disguise-card-label">Identity protection</div>
+          <h3>Saved as "Steve Work"</h3>
+          <p>When you register, Sidedoor saves itself to your contacts as "Steve Work" with a generic office building icon. If anyone scrolls your phone, they'll see a contact — not a secret networking app. No raised eyebrows. No awkward questions.</p>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <p style="font-size: 0.9rem; color: var(--gray-3); margin-bottom: 24px; text-align: center; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; font-size: 0.75rem;">Choose your disguise icon</p>
+          <div class="app-badges">
+
+            <div class="app-badge">
+              <div class="badge-icon badge-calc">
+                <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h2M12 10h2M16 10h0M8 14h2M12 14h2M16 14h2M8 18h8"/></svg>
               </div>
-            </li>
-            <li>
-              <div class="feature-icon">📍</div>
-              <div>
-                <strong>Follow the person, not the place</strong>
-                <p>When they move, you move with them. No more re-booking through a new salon's system and hoping for the same person.</p>
+              <span class="badge-name">Calculator</span>
+            </div>
+
+            <div class="app-badge">
+              <div class="badge-icon badge-weather">
+                <svg viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
               </div>
-            </li>
-            <li>
-              <div class="feature-icon">🤫</div>
-              <div>
-                <strong>Private by design</strong>
-                <p>You're not creating a public account. No profile. No reviews to leave. No social feed. Just a connection.</p>
+              <span class="badge-name">Weather</span>
+            </div>
+
+            <div class="app-badge">
+              <div class="badge-icon badge-torch">
+                <svg viewBox="0 0 24 24"><path d="M8 2h8l1 7H7L8 2z"/><path d="M7 9l-2 13h14L17 9"/><line x1="12" y1="13" x2="12" y2="18"/></svg>
               </div>
-            </li>
-          </ul>
+              <span class="badge-name">Torch</span>
+            </div>
+
+            <div class="app-badge">
+              <div class="badge-icon badge-files">
+                <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <span class="badge-name">Files</span>
+            </div>
+
+            <div class="app-badge">
+              <div class="badge-icon badge-compass">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+              </div>
+              <span class="badge-name">Compass</span>
+            </div>
+
+            <div class="app-badge">
+              <div class="badge-icon badge-notes">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <span class="badge-name">Notes</span>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PRICING -->
+  <!-- ─── PRICING ───────────────────────────────────────────────────────── -->
   <section class="pricing-section" id="pricing">
-    <div class="container" style="text-align: center;">
-      <p class="section-label">Pricing</p>
-      <h2 class="section-heading">Simple. Honest. Cheap.</h2>
-      <p class="section-sub" style="margin: 0 auto;">The platform that doesn't take a cut deserves a platform that's affordable. One pound a month. That's our deal.</p>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Pricing</span>
+        <h2>Simple. Honest. Cheap.</h2>
+        <p>Clients are always free. Professionals pay less than a coffee a month.</p>
+      </div>
 
       <div class="pricing-grid">
-        <div class="pricing-card">
-          <div class="pricing-label">For clients</div>
-          <div class="pricing-price">£0</div>
-          <div class="pricing-period">forever</div>
+
+        <div class="pricing-card reveal reveal-delay-1">
+          <div class="pricing-card-label">For clients</div>
+          <div class="pricing-price">Free<span></span></div>
+          <p class="pricing-desc">Find any professional who gave you their secret word. No subscription, no credit card.</p>
           <ul class="pricing-features">
-            <li>Download Sidedoor free</li>
-            <li>Enter secret words from professionals</li>
-            <li>Access direct contact details</li>
-            <li>Follow professionals when they move</li>
-            <li>No account required to browse</li>
+            <li>Find professionals by their word</li>
+            <li>Instant phone number reveal</li>
+            <li>Unlimited lookups</li>
+            <li>No account required</li>
           </ul>
-          <a href="#download" class="btn-secondary" style="width: 100%; justify-content: center;">Download free</a>
+          <a href="#download" class="pricing-cta pricing-cta-secondary">Download free</a>
         </div>
 
-        <div class="pricing-card featured">
-          <div class="pricing-label">⭐ For professionals</div>
-          <div class="pricing-price">£1</div>
-          <div class="pricing-period">per month — cancel anytime</div>
+        <div class="pricing-card featured reveal reveal-delay-2">
+          <div class="pricing-tag">Most popular</div>
+          <div class="pricing-card-label">For professionals</div>
+          <div class="pricing-price">£1<span> / month</span></div>
+          <p class="pricing-desc">Your own secret word, full control over who can reach you, and complete anonymity from your employer.</p>
           <ul class="pricing-features">
-            <li>Set your unique secret word</li>
-            <li>Change your word anytime</li>
-            <li>Zero commission on bookings</li>
-            <li>Hidden profile — no public listing</li>
-            <li>Disguised as "Steve Work" contact</li>
-            <li>Unlimited connected clients</li>
+            <li>Your own unique secret word</li>
+            <li>Change your word any time</li>
+            <li>Hidden as "Steve Work" in contacts</li>
+            <li>Disguisable app icon</li>
+            <li>Cancel any time</li>
           </ul>
-          <a href="#download" class="btn-primary" style="width: 100%; justify-content: center;">Start for £1/month</a>
+          <a href="#download" class="pricing-cta pricing-cta-primary">Get started for £1</a>
         </div>
+
       </div>
-
-      <p style="color: var(--muted); font-size: 0.875rem; margin-top: 2rem;">
-        No setup fees. No hidden costs. Cancel anytime from the app.
-      </p>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq">
+  <!-- ─── FAQ ───────────────────────────────────────────────────────────── -->
+  <section class="faq-section" id="faq">
     <div class="container">
-      <p class="section-label">FAQ</p>
-      <h2 class="section-heading">Straight answers.</h2>
+      <div class="section-header reveal">
+        <span class="section-label">FAQ</span>
+        <h2>Questions answered.</h2>
+      </div>
 
       <div class="faq-list">
 
-        <div class="faq-item">
-          <button class="faq-question">Is Sidedoor actually private? Can my employer find me on it?</button>
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <h4>Is my employer really unable to see this?</h4>
+            <div class="faq-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
           <div class="faq-answer">
-            Yes, genuinely private. There is no public directory, no searchable profiles, and no way to find a professional unless you know their specific secret word. Your employer would need to know your word, download the app, type it in, and even then they'd just see your contact details — which they probably already have.
+            <div class="faq-answer-inner">
+              <p>Yes. Sidedoor doesn't post anything publicly, doesn't connect to LinkedIn, and doesn't appear anywhere that would identify you as running a side business. The app is disguised in your contacts as "Steve Work" and can wear a generic icon. There's no social profile, no public listing, and no way for anyone to discover you're using it unless you tell them your word.</p>
+            </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-question">What does "hidden as Steve Work" mean?</button>
+        <div class="faq-item reveal reveal-delay-1">
+          <div class="faq-question">
+            <h4>What happens if I change my secret word?</h4>
+            <div class="faq-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
           <div class="faq-answer">
-            On a client's phone, Sidedoor doesn't appear as an app with a logo. Instead, it's saved as a contact called "Steve Work." When they tap it, the app opens. To anyone casually looking at their phone, it just looks like a regular contact entry.
+            <div class="faq-answer-inner">
+              <p>Instantly, the old word stops working for everyone. Anyone who tries the previous word will get nothing — your number is completely shielded. You simply tell your current clients your new word when you see them next. This is especially useful if you move to a new employer or want a clean slate.</p>
+            </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-question">What if I want to change my secret word?</button>
+        <div class="faq-item reveal reveal-delay-2">
+          <div class="faq-question">
+            <h4>Can a client share the word with someone I don't know?</h4>
+            <div class="faq-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
           <div class="faq-answer">
-            You can reset your word at any time from your profile settings. Clients who have already connected with you through the old word retain access — they still have your contact. New connections will need the updated word.
+            <div class="faq-answer-inner">
+              <p>Technically yes — a word can be passed on. But you're in control: if you find unexpected contacts coming through, you can change your word at any time. Think of it like a password — share it wisely, change it when needed. Most users treat it as an informal referral system.</p>
+            </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-question">Can clients find each other through the app?</button>
+        <div class="faq-item reveal reveal-delay-3">
+          <div class="faq-question">
+            <h4>Do clients need to create an account?</h4>
+            <div class="faq-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
           <div class="faq-answer">
-            No. Clients have zero visibility into other users. They type a word, they get a professional's contact. That's the entirety of the interaction. There's no social layer, no reviews, no profiles.
+            <div class="faq-answer-inner">
+              <p>No. Clients download the app, type a professional's secret word, and immediately see their number. No sign-up, no email, no account required. It's designed to be as low-friction as possible — so your clients will actually use it.</p>
+            </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-question">Is it legal to use Sidedoor while employed?</button>
+        <div class="faq-item reveal reveal-delay-4">
+          <div class="faq-question">
+            <h4>Who is Sidedoor for?</h4>
+            <div class="faq-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
           <div class="faq-answer">
-            Sidedoor is a private contact-sharing tool. Whether you can take on private clients depends entirely on your employment contract — specifically whether it contains non-compete or non-solicitation clauses. Most restrict you from actively soliciting your employer's clients; they don't restrict clients from finding you. We recommend reading your contract and making your own informed decision.
+            <div class="faq-answer-inner">
+              <p>Anyone who builds personal relationships with clients in their job — and wants to maintain those relationships privately. Hairdressers, personal trainers, physios, massage therapists, tutors, coaches, interior designers, tradespeople, financial advisors, and anyone else who works with people directly. If you'd rather your clients contacted you personally rather than going back through an employer or platform, Sidedoor is for you.</p>
+            </div>
           </div>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-question">Why is it called "Steve Work"?</button>
-          <div class="faq-answer">
-            Because "Steve Work" is about the most forgettable, unremarkable name for a contact. Nobody's going to ask who Steve Work is. That's the point. It's camouflage.
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <h4>How do I cancel my subscription?</h4>
+            <div class="faq-chevron">
+              <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
           </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">What happens if I cancel my subscription?</button>
           <div class="faq-answer">
-            Your word deactivates. Clients who try to use it will see no result. Your existing connections (people who already have your number) are unaffected — they still have your contact. You can reactivate any time and your word becomes active again.
+            <div class="faq-answer-inner">
+              <p>Through the App Store or Google Play, exactly like any other subscription. No hidden retention flows, no "are you sure?" obstacles. Cancel in two taps. If you rejoin later, you'll get a new word and start fresh.</p>
+            </div>
           </div>
         </div>
 
@@ -914,43 +1899,157 @@
     </div>
   </section>
 
-  <!-- DOWNLOAD CTA -->
-  <section class="cta-section" id="download">
-    <div class="container">
-      <h2>Your clients are waiting.<br />Go get them.</h2>
-      <p>Download Sidedoor now. Professionals start for £1/month. Clients are always free.</p>
+  <!-- ─── DOWNLOAD CTA ──────────────────────────────────────────────────── -->
+  <section class="download-section" id="download">
+    <div class="download-inner">
+      <div class="reveal">
+        <span class="section-label">Available now</span>
+        <h2>Take back your client relationships.</h2>
+        <p>Download free. Be ready the next time you meet someone worth keeping.</p>
+      </div>
+      <div class="store-buttons reveal reveal-delay-1">
 
-      <div class="store-buttons">
-        <a href="https://apps.apple.com/app/sidedoor" class="store-btn">
-          <span class="store-icon">🍎</span>
-          <div class="store-text">
-            <small>Download on the</small>
-            <strong>App Store</strong>
+        <a href="#" class="store-btn">
+          <div class="store-btn-icon">
+            <!-- Apple logo -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+            </svg>
+          </div>
+          <div class="store-btn-text">
+            <span class="store-btn-sub">Download on the</span>
+            <span class="store-btn-name">App Store</span>
           </div>
         </a>
-        <a href="https://play.google.com/store/apps/sidedoor" class="store-btn">
-          <span class="store-icon">▶</span>
-          <div class="store-text">
-            <small>Get it on</small>
-            <strong>Google Play</strong>
+
+        <a href="#" class="store-btn">
+          <div class="store-btn-icon">
+            <!-- Google Play triangle-ish -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.18 23.79c.3.16.64.22.99.16l13.12-7.58-2.76-2.76-11.35 10.18zm-1.2-21.3C1.55 2.87 1.5 3.32 1.5 3.79v16.42c0 .47.05.92.48 1.3l.07.07 9.2-9.2v-.22L2.05 2.42l-.07.07zM20.3 10.37l-2.63-1.52-3.08 3.08 3.08 3.08 2.66-1.54c.76-.44.76-1.16-.03-1.6zM4.17.21L17.3 7.79 14.54 10.55 3.19.37C3.54.27 3.9.33 4.17.55V.21z"/>
+            </svg>
+          </div>
+          <div class="store-btn-text">
+            <span class="store-btn-sub">Get it on</span>
+            <span class="store-btn-name">Google Play</span>
           </div>
         </a>
+
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ─── FOOTER ────────────────────────────────────────────────────────── -->
   <footer>
-    <div class="container">
-      <p style="color: var(--accent); font-weight: 700; font-size: 1rem; margin-bottom: 1rem;">Sidedoor</p>
-      <p style="margin-bottom: 1rem;">
-        <a href="/privacy">Privacy Policy</a> &nbsp;·&nbsp;
-        <a href="/terms">Terms of Service</a> &nbsp;·&nbsp;
-        <a href="mailto:hello@sidedoor.app">hello@sidedoor.app</a>
-      </p>
-      <p>© 2025 Sidedoor. Find talent. Stay private.</p>
+    <div class="footer-inner">
+      <a href="#" class="footer-logo">
+        <span class="nav-logo-dot" style="width:7px;height:7px;"></span>
+        Sidedoor
+      </a>
+
+      <ul class="footer-links">
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+      </ul>
+
+      <span class="footer-copy">&copy; 2024 Sidedoor. All rights reserved.</span>
     </div>
   </footer>
 
+  <!-- ─── SCRIPTS ───────────────────────────────────────────────────────── -->
+  <script>
+    // ── Ticker ──────────────────────────────────────────────────────────
+    const professions = [
+      'Personal Trainers', 'Hairdressers', 'Physios', 'Massage Therapists',
+      'Life Coaches', 'Tutors', 'Interior Designers', 'Dog Trainers',
+      'Nutritionists', 'Yoga Instructors', 'Osteopaths', 'Nail Technicians',
+      'Plumbers', 'Electricians', 'Decorators', 'Driving Instructors',
+      'Financial Advisors', 'Barbers', 'Aestheticians', 'Personal Chefs'
+    ];
+
+    const ticker = document.getElementById('ticker');
+    const allItems = [...professions, ...professions]; // double for seamless loop
+
+    allItems.forEach((p, i) => {
+      const item = document.createElement('span');
+      item.className = 'ticker-item';
+      item.innerHTML = `${p}<span class="ticker-sep"></span>`;
+      ticker.appendChild(item);
+    });
+
+    // ── Hamburger ────────────────────────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.mobile-link, .mobile-menu .nav-cta').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // ── FAQ Accordion ────────────────────────────────────────────────────
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.parentElement;
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.faq-answer').style.maxHeight = null;
+        });
+
+        // Open clicked
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // ── IntersectionObserver ─────────────────────────────────────────────
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    // Trigger hero elements on load
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.hero .reveal').forEach(el => {
+        setTimeout(() => el.classList.add('visible'), 100);
+      });
+    });
+
+    // ── Nav scroll effect ─────────────────────────────────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        nav.style.background = 'rgba(10, 10, 15, 0.92)';
+      } else {
+        nav.style.background = 'rgba(10, 10, 15, 0.7)';
+      }
+    });
+  </script>
 </body>
 </html>
