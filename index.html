@@ -3,10 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sidedoor — Private Professional Networking</title>
+  <title>Sidedoor — Private Professional Contacts App | Hide Your Clients From Your Employer</title>
+  <meta name="description" content="Sidedoor lets professionals share their number privately via a secret word. Disguisable app icon, disappearing messages, private contacts. £2/month. 7-day free trial.">
+  <meta name="keywords" content="private contacts app, hide app icon, secret chat app, disguise app, private number app, keep clients private, secret professional contact, client privacy, hidden app, calculator vault alternative">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.sidedoortheapp.com">
+  <meta property="og:title" content="Sidedoor — Your clients. Your word. Your rules.">
+  <meta property="og:description" content="A private channel between you and your clients. Secret word system. Disguisable app. £2/month for professionals.">
+  <meta property="og:image" content="https://www.sidedoortheapp.com/icon.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sidedoor — Private Professional Contacts">
+  <meta name="twitter:description" content="Your clients. Your word. Your rules. Private professional networking.">
+  <meta name="twitter:image" content="https://www.sidedoortheapp.com/icon.png">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.sidedoortheapp.com">
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="icon.png" />
   <style>
     /* ─── Reset & Base ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -15,19 +36,19 @@
       --bg: #0a0a0f;
       --bg-2: #0f0f17;
       --bg-3: #13131e;
-      --accent: #bf5af2;
-      --accent-dim: rgba(191, 90, 242, 0.15);
-      --accent-glow: rgba(191, 90, 242, 0.35);
-      --accent-2: #9b44d4;
+      --accent: #3b82f6;
+      --accent-dim: rgba(59, 130, 246, 0.15);
+      --accent-glow: rgba(59, 130, 246, 0.35);
+      --accent-2: #1d4ed8;
       --white: #ffffff;
       --gray-1: #f5f5f7;
       --gray-2: #a1a1b5;
       --gray-3: #4a4a6a;
       --gray-4: #1e1e2e;
       --border: rgba(255,255,255,0.07);
-      --border-hover: rgba(191, 90, 242, 0.5);
-      --radius: 16px;
-      --radius-lg: 24px;
+      --border-hover: rgba(59, 130, 246, 0.5);
+      --radius: 10px;
+      --radius-lg: 14px;
       --font: 'Inter', -apple-system, sans-serif;
       --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
@@ -43,6 +64,7 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     }
 
     /* ─── Scrollbar ─────────────────────────────────────────────── */
@@ -70,11 +92,11 @@
     /* ─── Typography ────────────────────────────────────────────── */
     h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.03em; }
     h2 { font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; }
-    h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700; letter-spacing: -0.015em; }
+    h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 800; letter-spacing: -0.02em; }
     p { color: var(--gray-2); }
 
     .accent-gradient {
-      background: linear-gradient(135deg, #bf5af2 0%, #e879f9 50%, #c084fc 100%);
+      background: linear-gradient(135deg, #3b82f6 0%, #e879f9 50%, #c084fc 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -102,7 +124,7 @@
       background: rgba(10, 10, 15, 0.7);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       transition: background var(--transition);
     }
 
@@ -239,7 +261,7 @@
       transform: translateX(-50%);
       width: 800px;
       height: 600px;
-      background: radial-gradient(ellipse at center, rgba(191, 90, 242, 0.18) 0%, transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.18) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -248,7 +270,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, rgba(191, 90, 242, 0.15) 1px, transparent 1px);
+      background-image: radial-gradient(circle, rgba(59, 130, 246, 0.15) 1px, transparent 1px);
       background-size: 32px 32px;
       mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 100%);
       -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 100%);
@@ -264,8 +286,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(191, 90, 242, 0.1);
-      border: 1px solid rgba(191, 90, 242, 0.3);
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
       padding: 6px 16px;
       border-radius: 100px;
       font-size: 0.8rem;
@@ -416,12 +438,14 @@
 
     .section-label {
       display: inline-block;
-      font-size: 0.75rem;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: #3b82f6;
       margin-bottom: 16px;
+      padding-left: 12px;
+      border-left: 3px solid #3b82f6;
     }
 
     .section-header p {
@@ -458,7 +482,7 @@
       position: absolute;
       inset: -1px;
       border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, rgba(191,90,242,0.5), rgba(232,121,249,0.3), transparent 60%);
+      background: linear-gradient(135deg, rgba(59,130,246,0.5), rgba(232,121,249,0.3), transparent 60%);
       opacity: 0;
       transition: opacity var(--transition);
       z-index: 0;
@@ -469,7 +493,7 @@
     .step-card:hover {
       border-color: transparent;
       transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(191, 90, 242, 0.15);
+      box-shadow: 0 20px 60px rgba(59, 130, 246, 0.15);
     }
 
     .step-card > * { position: relative; z-index: 1; }
@@ -488,14 +512,14 @@
     }
 
     .step-card:hover .step-number {
-      color: rgba(191, 90, 242, 0.06);
+      color: rgba(59, 130, 246, 0.06);
     }
 
     .step-icon {
       width: 48px; height: 48px;
       border-radius: 14px;
       background: var(--accent-dim);
-      border: 1px solid rgba(191, 90, 242, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -573,9 +597,9 @@
       width: 20px; height: 20px;
       flex-shrink: 0;
       background: var(--accent-dim);
-      border: 1px solid rgba(191, 90, 242, 0.3);
+      border: 1px solid rgba(59, 130, 246, 0.3);
       border-radius: 50%;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23bf5af2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 10l3.5 3.5L15 7'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 10l3.5 3.5L15 7'/%3E%3C/svg%3E");
       background-size: contain;
       margin-top: 2px;
     }
@@ -598,7 +622,7 @@
       flex-shrink: 0;
       border-radius: 12px;
       background: var(--accent-dim);
-      border: 1px solid rgba(191, 90, 242, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -747,8 +771,8 @@
 
     .iphone-input {
       width: 100%;
-      background: rgba(191, 90, 242, 0.1);
-      border: 1.5px solid rgba(191, 90, 242, 0.5);
+      background: rgba(59, 130, 246, 0.1);
+      border: 1.5px solid rgba(59, 130, 246, 0.5);
       border-radius: 12px;
       padding: 12px 16px;
       font-size: 0.8rem;
@@ -785,7 +809,7 @@
       font-family: var(--font);
       color: white;
       cursor: default;
-      box-shadow: 0 4px 20px rgba(191, 90, 242, 0.4);
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
       letter-spacing: -0.01em;
     }
 
@@ -872,8 +896,8 @@
     }
 
     .phone-reveal {
-      background: rgba(191, 90, 242, 0.08);
-      border: 1px solid rgba(191, 90, 242, 0.2);
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.2);
       border-radius: 10px;
       padding: 10px 14px;
       display: flex;
@@ -979,8 +1003,8 @@
     }
 
     .app-badge:hover {
-      border-color: rgba(191, 90, 242, 0.3);
-      background: rgba(191, 90, 242, 0.05);
+      border-color: rgba(59, 130, 246, 0.3);
+      background: rgba(59, 130, 246, 0.05);
       transform: translateY(-2px);
     }
 
@@ -1048,20 +1072,20 @@
     }
 
     .pricing-card.featured {
-      border-color: rgba(191, 90, 242, 0.4);
-      background: linear-gradient(135deg, rgba(191, 90, 242, 0.06) 0%, var(--bg-3) 100%);
-      box-shadow: 0 0 60px rgba(191, 90, 242, 0.1), inset 0 1px 0 rgba(191, 90, 242, 0.2);
+      border-color: rgba(59, 130, 246, 0.4);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.06) 0%, var(--bg-3) 100%);
+      box-shadow: 0 0 60px rgba(59, 130, 246, 0.1), inset 0 1px 0 rgba(59, 130, 246, 0.2);
     }
 
     .pricing-card.featured:hover {
-      border-color: rgba(191, 90, 242, 0.7);
-      box-shadow: 0 20px 60px rgba(191, 90, 242, 0.2), inset 0 1px 0 rgba(191, 90, 242, 0.3);
+      border-color: rgba(59, 130, 246, 0.7);
+      box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2), inset 0 1px 0 rgba(59, 130, 246, 0.3);
     }
 
     .pricing-tag {
       display: inline-block;
-      background: rgba(191, 90, 242, 0.15);
-      border: 1px solid rgba(191, 90, 242, 0.3);
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
       color: var(--accent);
       font-size: 0.7rem;
       font-weight: 700;
@@ -1126,7 +1150,7 @@
       flex-shrink: 0;
       border-radius: 50%;
       background: var(--accent-dim);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none' stroke='%23bf5af2' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 9l3 3 6-6'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 9l3 3 6-6'/%3E%3C/svg%3E");
       background-size: contain;
     }
 
@@ -1185,7 +1209,7 @@
     }
 
     .faq-item.open {
-      border-color: rgba(191, 90, 242, 0.3);
+      border-color: rgba(59, 130, 246, 0.3);
     }
 
     .faq-question {
@@ -1263,7 +1287,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(191,90,242,0.12) 0%, rgba(232,121,249,0.06) 50%, transparent 100%);
+      background: linear-gradient(135deg, rgba(59,130,246,0.12) 0%, rgba(232,121,249,0.06) 50%, transparent 100%);
       pointer-events: none;
     }
 
@@ -1273,7 +1297,7 @@
       top: -50%; left: 50%;
       transform: translateX(-50%);
       width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(191,90,242,0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -1442,14 +1466,144 @@
       .app-badges { gap: 8px; }
       .store-buttons { flex-direction: column; align-items: center; }
     }
+
+    /* ─── YOU GOT THE APP ────────────────────────────────────────────────────────── */
+    .app-confirm-section {
+      padding: 80px 0;
+    }
+    .app-confirm-card {
+      background: linear-gradient(135deg, #0f172a 0%, #0a0a0f 100%);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 60px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .app-confirm-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: #3b82f6;
+      padding-left: 12px;
+      border-left: 3px solid #3b82f6;
+      margin-bottom: 24px;
+      display: inline-block;
+    }
+    .app-confirm-title {
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .app-confirm-sub {
+      font-size: 17px;
+      color: var(--gray-2);
+      line-height: 1.65;
+      margin-bottom: 40px;
+      max-width: 500px;
+    }
+    .app-confirm-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .app-confirm-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+    }
+    .app-confirm-num {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #3b82f6;
+      min-width: 28px;
+      padding-top: 2px;
+    }
+    .app-confirm-text {
+      font-size: 16px;
+      color: var(--gray-1);
+      line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+      .app-confirm-card { padding: 36px 24px; }
+    }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Sidedoor",
+    "description": "Private professional contacts app. Set a secret word, share your number privately with clients. Disguisable app icon, disappearing messages.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "iOS, Android",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Professional",
+        "price": "2.00",
+        "priceCurrency": "GBP",
+        "billingIncrement": "P1M"
+      },
+      {
+        "@type": "Offer",
+        "name": "Client",
+        "price": "1.00",
+        "priceCurrency": "GBP",
+        "billingIncrement": "P1M"
+      }
+    ],
+    "url": "https://www.sidedoortheapp.com",
+    "image": "https://www.sidedoortheapp.com/icon.png",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does Sidedoor keep my clients private?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sidedoor uses a secret word system. You choose a word, share it with clients in person. When they enter it in the app, they get your number directly. No employer can see your client list."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I hide the Sidedoor app icon?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Sidedoor lets you disguise the app icon as a calculator, weather app, torch, or 7 other options. It also appears under any contact name you choose on your phone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does Sidedoor cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Professionals pay \u00a32/month with a 7-day free trial and can cancel after the first month. Clients pay \u00a31/month with a 3-month minimum commitment."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
   <!-- ─── NAV ──────────────────────────────────────────────────────────── -->
   <nav id="nav">
     <a href="#" class="nav-logo">
-      <span class="nav-logo-dot"></span>
+      <img src="icon.png" alt="Sidedoor" style="width:32px;height:32px;border-radius:8px;margin-right:10px;vertical-align:middle;" />
       Sidedoor
     </a>
 
@@ -1567,8 +1721,8 @@
           <ul class="feature-list">
             <li>Total control over who gets your number</li>
             <li>Your word changes the moment you want a fresh start</li>
-            <li>Hidden from your employer — disguised as "Steve Work" in contacts</li>
-            <li>£1 per month. Cancel any time.</li>
+            <li>Hidden from your employer — saved in contacts under any name you choose</li>
+            <li>£1 per month. 3-month minimum commitment.</li>
           </ul>
         </div>
 
@@ -1620,8 +1774,8 @@
                 <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
               </div>
               <div class="benefit-text">
-                <h4>Completely free for clients</h4>
-                <p>Download the app, type the word, get the number. No subscription, no sign-up friction.</p>
+                <h4>£1/month for everyone</h4>
+                <p>Both sides pay the same — less than a coffee a month. No one gets a free ride, no one subsidises anyone else.</p>
               </div>
             </li>
             <li class="benefit-item">
@@ -1697,13 +1851,13 @@
         <div class="reveal">
           <span class="section-label">The disguise</span>
           <h2>Hidden in plain sight.</h2>
-          <p>Sidedoor doesn't announce itself. It lives quietly on your phone under the name "Steve Work" — and it can disguise its icon as something completely unremarkable.</p>
+          <p>Sidedoor doesn't announce itself. It lives quietly on your phone under whatever contact name you choose — and it can disguise its icon as something completely unremarkable.</p>
         </div>
 
         <div class="disguise-card reveal reveal-delay-1">
           <div class="disguise-card-label">Identity protection</div>
-          <h3>Saved as "Steve Work"</h3>
-          <p>When you register, Sidedoor saves itself to your contacts as "Steve Work" with a generic office building icon. If anyone scrolls your phone, they'll see a contact — not a secret networking app. No raised eyebrows. No awkward questions.</p>
+          <h3>Saved under any name you like</h3>
+          <p>You choose what name the contact uses — Mum, Dad, a friend's name, anything. If anyone scrolls your phone, they'll see a contact — not a secret networking app. No raised eyebrows. No awkward questions.</p>
         </div>
 
         <div class="reveal reveal-delay-2">
@@ -1763,38 +1917,42 @@
     <div class="container">
       <div class="section-header reveal">
         <span class="section-label">Pricing</span>
-        <h2>Simple. Honest. Cheap.</h2>
-        <p>Clients are always free. Professionals pay less than a coffee a month.</p>
+        <h2>Simple. Honest. Fair.</h2>
+        <p>Two tiers. Both cheap. Professionals get the full toolkit, clients get the access they need.</p>
       </div>
 
       <div class="pricing-grid">
 
         <div class="pricing-card reveal reveal-delay-1">
           <div class="pricing-card-label">For clients</div>
-          <div class="pricing-price">Free<span></span></div>
-          <p class="pricing-desc">Find any professional who gave you their secret word. No subscription, no credit card.</p>
+          <div class="pricing-price">£1<span> / month</span></div>
+          <p class="pricing-desc">Find any professional who shared their secret word with you. Private, direct, no middleman.</p>
           <ul class="pricing-features">
-            <li>Find professionals by their word</li>
-            <li>Instant phone number reveal</li>
+            <li>Look up any professional by their secret word</li>
+            <li>Instant number reveal</li>
             <li>Unlimited lookups</li>
-            <li>No account required</li>
+            <li>Message directly in the app</li>
+            <li>3-month minimum commitment</li>
           </ul>
-          <a href="#download" class="pricing-cta pricing-cta-secondary">Download free</a>
+          <a href="#download" class="pricing-cta pricing-cta-secondary">Get started</a>
         </div>
 
         <div class="pricing-card featured reveal reveal-delay-2">
-          <div class="pricing-tag">Most popular</div>
+          <div class="pricing-tag">Full toolkit</div>
           <div class="pricing-card-label">For professionals</div>
-          <div class="pricing-price">£1<span> / month</span></div>
-          <p class="pricing-desc">Your own secret word, full control over who can reach you, and complete anonymity from your employer.</p>
+          <div class="pricing-price">£2<span> / month</span></div>
+          <p class="pricing-desc">Your private channel, fully protected. Everything a professional needs to stay hidden from their employer.</p>
           <ul class="pricing-features">
-            <li>Your own unique secret word</li>
+            <li>Your own secret word — you control who gets it</li>
             <li>Change your word any time</li>
-            <li>Hidden as "Steve Work" in contacts</li>
-            <li>Disguisable app icon</li>
-            <li>Cancel any time</li>
+            <li>Up to 5 secret words</li>
+            <li>Disguisable app icon (10 options)</li>
+            <li>Custom contact name — Mum, Dad, anything</li>
+            <li>Disappearing messages</li>
+            <li>7-day free trial</li>
+            <li>Cancel any time after first month</li>
           </ul>
-          <a href="#download" class="pricing-cta pricing-cta-primary">Get started for £1</a>
+          <a href="#download" class="pricing-cta pricing-cta-primary">Get started for £2</a>
         </div>
 
       </div>
@@ -1820,7 +1978,7 @@
           </div>
           <div class="faq-answer">
             <div class="faq-answer-inner">
-              <p>Yes. Sidedoor doesn't post anything publicly, doesn't connect to LinkedIn, and doesn't appear anywhere that would identify you as running a side business. The app is disguised in your contacts as "Steve Work" and can wear a generic icon. There's no social profile, no public listing, and no way for anyone to discover you're using it unless you tell them your word.</p>
+              <p>Yes. Sidedoor doesn't post anything publicly, doesn't connect to LinkedIn, and doesn't appear anywhere that would identify you as running a side business. The app is disguised in your contacts under a name you choose, and can wear a generic icon. There's no social profile, no public listing, and no way for anyone to discover you're using it unless you tell them your word.</p>
             </div>
           </div>
         </div>
@@ -1862,7 +2020,7 @@
           </div>
           <div class="faq-answer">
             <div class="faq-answer-inner">
-              <p>No. Clients download the app, type a professional's secret word, and immediately see their number. No sign-up, no email, no account required. It's designed to be as low-friction as possible — so your clients will actually use it.</p>
+              <p>Yes — clients sign up with an email. It's £1/month with a 3-month minimum commitment. The account keeps your lookup history private and lets you message professionals directly in the app.</p>
             </div>
           </div>
         </div>
@@ -1939,6 +2097,33 @@
     </div>
   </section>
 
+  <!-- ─── YOU GOT THE APP ─────────────────────────────────────────────────────── -->
+  <section class="app-confirm-section" id="got-the-app">
+    <div class="container">
+      <div class="app-confirm-card reveal">
+        <div class="app-confirm-badge">ALREADY INSTALLED</div>
+        <h2 class="app-confirm-title">You got the app.</h2>
+        <p class="app-confirm-sub">
+          Good. Now pick your word, share it with the right people, and stay invisible to everyone else.
+        </p>
+        <div class="app-confirm-steps">
+          <div class="app-confirm-step">
+            <span class="app-confirm-num">01</span>
+            <span class="app-confirm-text">Open Sidedoor and complete your setup</span>
+          </div>
+          <div class="app-confirm-step">
+            <span class="app-confirm-num">02</span>
+            <span class="app-confirm-text">Choose a secret word only your clients will know</span>
+          </div>
+          <div class="app-confirm-step">
+            <span class="app-confirm-num">03</span>
+            <span class="app-confirm-text">Tell clients in person — never online</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── FOOTER ────────────────────────────────────────────────────────── -->
   <footer>
     <div class="footer-inner">
@@ -1955,7 +2140,18 @@
         <li><a href="#">Terms</a></li>
       </ul>
 
-      <span class="footer-copy">&copy; 2024 Sidedoor. All rights reserved.</span>
+      <div style="display:flex;align-items:center;gap:20px;">
+        <a href="https://www.tiktok.com/@sidedoortheapp" target="_blank" rel="noopener" style="color:var(--gray-3);transition:color 0.2s;" aria-label="TikTok" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='var(--gray-3)'">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.79 1.54V6.79a4.85 4.85 0 0 1-1.02-.1z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/sidedoortheapp" target="_blank" rel="noopener" style="color:var(--gray-3);transition:color 0.2s;" aria-label="Instagram" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='var(--gray-3)'">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/sidedoorapp" target="_blank" rel="noopener" style="color:var(--gray-3);transition:color 0.2s;" aria-label="LinkedIn" onmouseover="this.style.color='#3b82f6'" onmouseout="this.style.color='var(--gray-3)'">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+      <span class="footer-copy">&copy; 2025 Sidedoor. All rights reserved.</span>
     </div>
   </footer>
 

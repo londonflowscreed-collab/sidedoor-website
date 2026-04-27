@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Second Phone Number App for Freelancers &amp; Side Hustles | Sidedoor</title>
+  <meta name="description" content="Keep your side hustle calls private. Sidedoor gives freelancers and self-employed professionals a private channel for client contact — no second SIM needed. £2/month.">
+  <meta name="keywords" content="second phone number side hustle, burner number app UK, Google Voice alternative UK, private number for freelancers, second SIM alternative, private business number UK">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.sidedoortheapp.com/second-phone-number">
+  <meta property="og:title" content="Second Phone Number App for Freelancers &amp; Side Hustles | Sidedoor">
+  <meta property="og:description" content="Keep your side hustle calls private. Sidedoor gives freelancers a private channel for client contact — no second SIM needed. £2/month.">
+  <meta property="og:image" content="https://www.sidedoortheapp.com/icon.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Second Phone Number App for Freelancers | Sidedoor">
+  <meta name="twitter:description" content="No second SIM. No Google Voice. No monthly line rental. Just a secret word that gives clients your number privately.">
+  <meta name="twitter:image" content="https://www.sidedoortheapp.com/icon.png">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.sidedoortheapp.com/second-phone-number">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="icon.png" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0f; --bg-2: #0f0f17; --bg-3: #13131e;
+      --accent: #3b82f6; --accent-dim: rgba(59,130,246,0.15); --accent-glow: rgba(59,130,246,0.35);
+      --white: #ffffff; --gray-1: #f5f5f7; --gray-2: #a1a1b5; --gray-3: #4a4a6a; --gray-4: #1e1e2e;
+      --border: rgba(255,255,255,0.07); --radius: 10px; --radius-lg: 14px;
+      --font: 'Inter', -apple-system, sans-serif; --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--white); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--gray-3); border-radius: 3px; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; }
+    h1 { font-size: clamp(2.6rem, 6vw, 4.8rem); font-weight: 900; line-height: 1.07; letter-spacing: -0.03em; }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.12; letter-spacing: -0.025em; }
+    h3 { font-size: clamp(1.05rem, 2vw, 1.3rem); font-weight: 700; letter-spacing: -0.02em; }
+    p { color: var(--gray-2); }
+    .accent-gradient { background: linear-gradient(135deg, #3b82f6 0%, #e879f9 50%, #c084fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    section { position: relative; overflow: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,15,0.7); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-logo { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.03em; color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .nav-logo-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 12px var(--accent); flex-shrink: 0; }
+    .nav-cta { background: var(--accent); color: var(--white); padding: 8px 20px; border-radius: 100px; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: background var(--transition), transform var(--transition); }
+    .nav-cta:hover { background: #c96ff5; transform: translateY(-1px); }
+
+    /* HERO */
+    .hero { min-height: 92vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; position: relative; }
+    .hero-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .hero-bg::before { content: ''; position: absolute; top: -10%; left: 50%; transform: translateX(-50%); width: 800px; height: 600px; background: radial-gradient(ellipse at center, rgba(59,130,246,0.18) 0%, transparent 70%); }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(59,130,246,0.15) 1px, transparent 1px); background-size: 32px 32px; mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 100%); }
+    .hero-content { position: relative; z-index: 1; max-width: 860px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); padding: 6px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; color: var(--accent); margin-bottom: 32px; letter-spacing: 0.05em; text-transform: uppercase; }
+    .hero-badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; box-shadow:0 0 0 0 var(--accent-glow); } 50% { opacity:0.7; box-shadow:0 0 0 6px transparent; } }
+    .hero h1 { margin-bottom: 24px; }
+    .hero-sub { font-size: clamp(1rem, 2.2vw, 1.25rem); color: var(--gray-2); max-width: 620px; margin: 0 auto 40px; line-height: 1.65; }
+    .hero-ctas { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--white); padding: 14px 28px; border-radius: 100px; font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: background var(--transition), transform var(--transition), box-shadow var(--transition); }
+    .btn-primary:hover { background: #c96ff5; transform: translateY(-2px); box-shadow: 0 8px 32px var(--accent-glow); }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); color: var(--white); padding: 14px 28px; border-radius: 100px; font-size: 0.95rem; font-weight: 600; text-decoration: none; border: 1px solid var(--border); transition: background var(--transition), transform var(--transition); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.09); transform: translateY(-2px); }
+
+    /* CONTENT */
+    .section-label { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #3b82f6; margin-bottom: 16px; padding-left: 12px; border-left: 3px solid #3b82f6; }
+    .content-section { padding: 100px 0; }
+    .content-section:nth-child(even) { background: var(--bg-2); }
+    .content-section.alt { background: var(--bg-2); }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .two-col.flip { direction: rtl; }
+    .two-col.flip > * { direction: ltr; }
+
+    .copy-block h2 { margin-bottom: 18px; }
+    .copy-block > p { font-size: 1.05rem; line-height: 1.72; margin-bottom: 28px; }
+
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; color: var(--gray-2); line-height: 1.55; }
+    .check-list li::before { content: ''; width: 20px; height: 20px; flex-shrink: 0; background: var(--accent-dim); border: 1px solid rgba(59,130,246,0.3); border-radius: 50%; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 10l3.5 3.5L15 7'/%3E%3C/svg%3E"); background-size: contain; margin-top: 2px; }
+
+    .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px 28px; transition: border-color var(--transition), transform var(--transition); }
+    .card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-4px); }
+    .card-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--accent-dim); border: 1px solid rgba(59,130,246,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+    .card-icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .card h3 { margin-bottom: 10px; color: var(--white); }
+    .card p { font-size: 0.9rem; line-height: 1.6; }
+
+    .compare-table { width: 100%; border-collapse: collapse; margin: 0 auto; }
+    .compare-table th { text-align: left; padding: 14px 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-3); border-bottom: 1px solid var(--border); }
+    .compare-table td { padding: 16px 20px; font-size: 0.95rem; color: var(--gray-2); border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:first-child { font-weight: 600; color: var(--white); }
+    .compare-table td.yes { color: #34c759; font-weight: 600; }
+    .compare-table td.no { color: #ff453a; }
+    .compare-table tr.highlight td { background: rgba(59,130,246,0.05); }
+    .compare-wrap { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+
+    .section-header { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+    .section-header p { font-size: 1.05rem; margin-top: 14px; }
+
+    /* DOWNLOAD */
+    .download-section { padding: 100px 24px; background: var(--bg-2); position: relative; overflow: hidden; }
+    .download-section::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(59,130,246,0.12) 0%, rgba(232,121,249,0.06) 50%, transparent 100%); pointer-events: none; }
+    .download-section::after { content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%); pointer-events: none; }
+    .download-inner { position: relative; z-index: 1; text-align: center; max-width: 600px; margin: 0 auto; }
+    .download-inner h2 { margin-bottom: 16px; }
+    .download-inner p { font-size: 1.1rem; color: var(--gray-2); margin-bottom: 40px; }
+    .store-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .store-btn { display: inline-flex; align-items: center; gap: 12px; background: var(--white); color: #0a0a0f; padding: 14px 24px; border-radius: 14px; text-decoration: none; transition: transform var(--transition), box-shadow var(--transition); min-width: 160px; }
+    .store-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    .store-btn-icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .store-btn-icon svg { width: 24px; height: 24px; fill: #0a0a0f; }
+    .store-btn-text { display: flex; flex-direction: column; align-items: flex-start; }
+    .store-btn-sub { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.03em; opacity: 0.6; }
+    .store-btn-name { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; }
+
+    /* FOOTER */
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 48px 24px; }
+    .footer-inner { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+    .footer-logo { display: flex; align-items: center; gap: 8px; font-size: 1rem; font-weight: 800; color: var(--white); text-decoration: none; letter-spacing: -0.03em; }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; list-style: none; }
+    .footer-links a { font-size: 0.875rem; color: var(--gray-3); text-decoration: none; transition: color var(--transition); }
+    .footer-links a:hover { color: var(--gray-2); }
+    .footer-copy { font-size: 0.8rem; color: var(--gray-3); }
+
+    @media (max-width: 860px) {
+      .two-col, .two-col.flip { grid-template-columns: 1fr; gap: 48px; direction: ltr; }
+      .card-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) { .store-buttons { flex-direction: column; align-items: center; } }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Sidedoor",
+    "description": "Private second phone number alternative for freelancers and side hustlers. Secret word system means no second SIM needed.",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "iOS, Android",
+    "offers": { "@type": "Offer", "price": "2.00", "priceCurrency": "GBP" },
+    "url": "https://www.sidedoortheapp.com/second-phone-number"
+  }
+  </script>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="/" class="nav-logo">
+      <img src="icon.png" alt="Sidedoor" style="width:32px;height:32px;border-radius:8px;margin-right:8px;vertical-align:middle;" />
+      Sidedoor
+    </a>
+    <a href="#download" class="nav-cta">Get the app</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <span class="hero-badge-dot"></span>
+        No Second SIM Required
+      </div>
+      <h1 class="reveal reveal-delay-1">
+        A smarter second<br/>
+        <span class="accent-gradient">phone number</span><br/>
+        for your side hustle.
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">
+        Freelancers and self-employed professionals across the UK use Sidedoor to keep client calls and messages completely private from their employer — without buying a second phone or SIM.
+      </p>
+      <div class="hero-ctas reveal reveal-delay-3">
+        <a href="#download" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          Download free — £2/month
+        </a>
+        <a href="#compare" class="btn-secondary">
+          See how it compares
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY A SECOND NUMBER -->
+  <section class="content-section" style="background: var(--bg);">
+    <div class="container">
+      <div class="two-col">
+        <div class="copy-block reveal">
+          <span class="section-label">The problem</span>
+          <h2>Your side hustle needs to stay invisible.</h2>
+          <p>Whether you're freelancing on evenings and weekends, taking private clients alongside a full-time job, or quietly building something of your own — the last thing you need is your employer finding out through a stray call or a contact saved on your work phone.</p>
+          <p>Most people solve this with a burner number, a second SIM, or Google Voice. The problem? They all leave traces — a visible phone number your clients can share, a second SIM your employer might spot, or a US-only service that barely works in the UK.</p>
+          <p>Sidedoor takes a different approach entirely.</p>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="card-grid" style="grid-template-columns: 1fr 1fr;">
+            <div class="card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3>Zero paper trail</h3>
+              <p>No number published anywhere. Clients find you via a secret word you give them in person.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <h3>Completely hidden</h3>
+              <p>The app disguises itself. Your employer won't see a "side hustle" app — they'll see a calculator.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+              </div>
+              <h3>£2/month flat</h3>
+              <p>No second line rental. No rolling SIM contract. Just £2 a month, cancel after the first month.</p>
+            </div>
+            <div class="card">
+              <div class="card-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1.2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6.29 6.29l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              </div>
+              <h3>Works in the UK</h3>
+              <p>Built for UK users. No US-only restrictions like Google Voice. Works on any iPhone or Android.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="content-section alt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">How it works</span>
+        <h2>Better than a burner number.</h2>
+        <p>Instead of giving out a phone number at all, you give clients a secret word. They enter it in the app, and your number appears — privately, directly, with no employer ever seeing it.</p>
+      </div>
+      <div class="card-grid reveal reveal-delay-1">
+        <div class="card" style="background: var(--bg-3);">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3>1. Choose your word</h3>
+          <p>Pick any secret word — something only your clients will know. This is the key that unlocks your private number inside the app.</p>
+        </div>
+        <div class="card" style="background: var(--bg-3);">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>2. Tell clients in person</h3>
+          <p>Whisper it, text it once, mention it in conversation. Never post it publicly. The word stays between you and your trusted clients.</p>
+        </div>
+        <div class="card" style="background: var(--bg-3);">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3>3. They connect privately</h3>
+          <p>They open Sidedoor, enter your word, and get your number directly. No directory listing. No employer discovery risk.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="content-section" id="compare" style="background: var(--bg);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Comparison</span>
+        <h2>How Sidedoor stacks up.</h2>
+        <p>Google Voice is US-only. Second SIMs are expensive and visible. Burner apps still give out a number. Sidedoor is different.</p>
+      </div>
+      <div class="compare-wrap reveal reveal-delay-1">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Sidedoor</th>
+              <th>Second SIM</th>
+              <th>Google Voice</th>
+              <th>Burner app</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight">
+              <td>Works in the UK</td>
+              <td class="yes">✓ Yes</td>
+              <td class="yes">✓ Yes</td>
+              <td class="no">✗ No</td>
+              <td class="yes">✓ Yes</td>
+            </tr>
+            <tr>
+              <td>No number broadcast publicly</td>
+              <td class="yes">✓ Yes</td>
+              <td class="no">✗ No</td>
+              <td class="no">✗ No</td>
+              <td class="no">✗ No</td>
+            </tr>
+            <tr class="highlight">
+              <td>App can be hidden/disguised</td>
+              <td class="yes">✓ Yes</td>
+              <td class="no">N/A</td>
+              <td class="no">✗ No</td>
+              <td class="no">✗ No</td>
+            </tr>
+            <tr>
+              <td>No second SIM or contract</td>
+              <td class="yes">✓ Yes</td>
+              <td class="no">✗ No</td>
+              <td class="yes">✓ Yes</td>
+              <td class="yes">✓ Yes</td>
+            </tr>
+            <tr class="highlight">
+              <td>Disappearing messages</td>
+              <td class="yes">✓ Yes</td>
+              <td class="no">✗ No</td>
+              <td class="no">✗ No</td>
+              <td class="no">✗ No</td>
+            </tr>
+            <tr>
+              <td>Monthly cost</td>
+              <td class="yes">£2</td>
+              <td class="no">£5–15+</td>
+              <td>Free (US only)</td>
+              <td>£3–8</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="content-section alt">
+    <div class="container">
+      <div class="two-col flip">
+        <div class="copy-block reveal">
+          <span class="section-label">Who uses Sidedoor</span>
+          <h2>Built for anyone running a side hustle in the UK.</h2>
+          <p>You don't need to be a full-time freelancer to need a private number. Sidedoor is used by people who have a day job and a side business — and need to keep the two completely separate.</p>
+          <ul class="check-list">
+            <li>Freelance designers, developers, and copywriters taking private clients</li>
+            <li>Personal trainers doing sessions outside their gym contract</li>
+            <li>Hairdressers and barbers with loyal clients they want to keep</li>
+            <li>Tradespeople building their own client base alongside employment</li>
+            <li>Coaches, tutors, and therapists taking private referrals</li>
+            <li>Anyone who needs a professional, private channel — without the cost of a second line</li>
+          </ul>
+        </div>
+        <div class="reveal reveal-delay-2" style="background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px 36px;">
+          <div class="section-label" style="margin-bottom: 20px;">Real scenario</div>
+          <p style="font-size: 1rem; line-height: 1.72; margin-bottom: 20px; color: var(--gray-1);">"I'm a PT at a commercial gym. My contract says I can't poach clients. But if someone wants to train with me privately — and I meet them socially — I can't stop that."</p>
+          <p style="font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px;">"With Sidedoor, I give my word to people I meet. They find my number. My gym never sees a client list, never sees a second app, never has any idea."</p>
+          <p style="font-size: 0.85rem; color: var(--gray-3);">— Common use case, Personal Trainer, London</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="download-section" id="download">
+    <div class="download-inner">
+      <div class="reveal">
+        <span class="section-label">Available now</span>
+        <h2>Your side hustle deserves a private channel.</h2>
+        <p>Download free. 7-day trial. £2/month after that — less than most burner SIM deals.</p>
+      </div>
+      <div class="store-buttons reveal reveal-delay-1">
+        <a href="#" class="store-btn">
+          <div class="store-btn-icon">
+            <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          </div>
+          <div class="store-btn-text">
+            <span class="store-btn-sub">Download on the</span>
+            <span class="store-btn-name">App Store</span>
+          </div>
+        </a>
+        <a href="#" class="store-btn">
+          <div class="store-btn-icon">
+            <svg viewBox="0 0 24 24"><path d="M3.18 23.79c.3.16.64.22.99.16l13.12-7.58-2.76-2.76-11.35 10.18zm-1.2-21.3C1.55 2.87 1.5 3.32 1.5 3.79v16.42c0 .47.05.92.48 1.3l.07.07 9.2-9.2v-.22L2.05 2.42l-.07.07zM20.3 10.37l-2.63-1.52-3.08 3.08 3.08 3.08 2.66-1.54c.76-.44.76-1.16-.03-1.6zM4.17.21L17.3 7.79 14.54 10.55 3.19.37C3.54.27 3.9.33 4.17.55V.21z"/></svg>
+          </div>
+          <div class="store-btn-text">
+            <span class="store-btn-sub">Get it on</span>
+            <span class="store-btn-name">Google Play</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="/" class="footer-logo">
+        <span class="nav-logo-dot" style="width:7px;height:7px;background:var(--accent);border-radius:50%;box-shadow:0 0 12px var(--accent);"></span>
+        Sidedoor
+      </a>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+      </ul>
+      <span class="footer-copy">&copy; 2025 Sidedoor. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+    window.addEventListener('load', () => { document.querySelectorAll('.hero .reveal').forEach(el => setTimeout(() => el.classList.add('visible'), 100)); });
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.style.background = window.scrollY > 20 ? 'rgba(10,10,15,0.92)' : 'rgba(10,10,15,0.7)'; });
+  </script>
+</body>
+</html>

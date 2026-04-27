@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Better Than Calculator Vault Apps | Sidedoor Private App</title>
+  <meta name="description" content="Calculator vault apps hide photos. Sidedoor hides your entire professional life. Disguisable icon, private contacts, disappearing messages. £2/month.">
+  <meta name="keywords" content="calculator vault app alternative, vault app alternative, better than calculator vault, app hider alternative, hide app icon, private app UK, secret app alternative">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.sidedoortheapp.com/calculator-vault-alternative">
+  <meta property="og:title" content="Better Than Calculator Vault Apps | Sidedoor Private App">
+  <meta property="og:description" content="Calculator vault apps hide photos. Sidedoor hides your entire professional life. Disguisable icon, private contacts, disappearing messages. £2/month.">
+  <meta property="og:image" content="https://www.sidedoortheapp.com/icon.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Better Than Calculator Vault | Sidedoor">
+  <meta name="twitter:description" content="100M+ calculator vault downloads. But they only hide photos. Sidedoor hides your entire professional life.">
+  <meta name="twitter:image" content="https://www.sidedoortheapp.com/icon.png">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.sidedoortheapp.com/calculator-vault-alternative">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="favicon.ico" />
+  <link rel="apple-touch-icon" href="icon.png" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0f; --bg-2: #0f0f17; --bg-3: #13131e;
+      --accent: #3b82f6; --accent-dim: rgba(59,130,246,0.15); --accent-glow: rgba(59,130,246,0.35);
+      --white: #ffffff; --gray-1: #f5f5f7; --gray-2: #a1a1b5; --gray-3: #4a4a6a;
+      --border: rgba(255,255,255,0.07); --radius: 10px; --radius-lg: 14px;
+      --font: 'Inter', -apple-system, sans-serif; --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--white); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--gray-3); border-radius: 3px; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; } .reveal-delay-2 { transition-delay: 0.2s; } .reveal-delay-3 { transition-delay: 0.3s; }
+    h1 { font-size: clamp(2.6rem, 6vw, 4.8rem); font-weight: 900; line-height: 1.07; letter-spacing: -0.03em; }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.12; letter-spacing: -0.025em; }
+    h3 { font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 700; letter-spacing: -0.02em; }
+    p { color: var(--gray-2); }
+    .accent-gradient { background: linear-gradient(135deg, #3b82f6 0%, #e879f9 50%, #c084fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    section { position: relative; overflow: hidden; }
+    .section-label { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #3b82f6; margin-bottom: 16px; padding-left: 12px; border-left: 3px solid #3b82f6; }
+    .section-header { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+    .section-header p { font-size: 1.05rem; margin-top: 14px; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,15,0.7); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nav-logo { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.03em; color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .nav-cta { background: var(--accent); color: var(--white); padding: 8px 20px; border-radius: 100px; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: background var(--transition), transform var(--transition); }
+    .nav-cta:hover { background: #c96ff5; transform: translateY(-1px); }
+
+    /* HERO */
+    .hero { min-height: 92vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 24px 80px; position: relative; }
+    .hero-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .hero-bg::before { content: ''; position: absolute; top: -10%; left: 50%; transform: translateX(-50%); width: 800px; height: 600px; background: radial-gradient(ellipse at center, rgba(59,130,246,0.18) 0%, transparent 70%); }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(59,130,246,0.15) 1px, transparent 1px); background-size: 32px 32px; mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 100%); }
+    .hero-content { position: relative; z-index: 1; max-width: 860px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); padding: 6px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; color: var(--accent); margin-bottom: 32px; letter-spacing: 0.05em; text-transform: uppercase; }
+    .hero-badge-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1; box-shadow:0 0 0 0 var(--accent-glow); } 50% { opacity:0.7; box-shadow:0 0 0 6px transparent; } }
+    .hero h1 { margin-bottom: 24px; }
+    .hero-sub { font-size: clamp(1rem, 2.2vw, 1.25rem); color: var(--gray-2); max-width: 620px; margin: 0 auto 40px; line-height: 1.65; }
+    .hero-ctas { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: var(--white); padding: 14px 28px; border-radius: 100px; font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: background var(--transition), transform var(--transition), box-shadow var(--transition); }
+    .btn-primary:hover { background: #c96ff5; transform: translateY(-2px); box-shadow: 0 8px 32px var(--accent-glow); }
+
+    /* CONTENT */
+    .content-section { padding: 100px 0; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .two-col.flip { direction: rtl; }
+    .two-col.flip > * { direction: ltr; }
+    .copy-block h2 { margin-bottom: 18px; }
+    .copy-block > p { font-size: 1.05rem; line-height: 1.72; margin-bottom: 20px; }
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .check-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 0.95rem; color: var(--gray-2); line-height: 1.55; }
+    .check-list li::before { content: ''; width: 20px; height: 20px; flex-shrink: 0; background: var(--accent-dim); border: 1px solid rgba(59,130,246,0.3); border-radius: 50%; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 10l3.5 3.5L15 7'/%3E%3C/svg%3E"); background-size: contain; margin-top: 2px; }
+
+    /* COMPARISON TABLE */
+    .compare-wrap { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .compare-table { width: 100%; border-collapse: collapse; }
+    .compare-table th { text-align: left; padding: 14px 20px; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-3); border-bottom: 1px solid var(--border); }
+    .compare-table td { padding: 16px 20px; font-size: 0.93rem; color: var(--gray-2); border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:first-child { font-weight: 600; color: var(--white); }
+    .compare-table td.yes { color: #34c759; font-weight: 600; }
+    .compare-table td.no { color: #ff453a; }
+    .compare-table tr.highlight td { background: rgba(59,130,246,0.05); }
+
+    /* FEATURE CARDS */
+    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .feature-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px 28px; transition: border-color var(--transition), transform var(--transition); }
+    .feature-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-4px); }
+    .feature-card-icon { font-size: 1.8rem; margin-bottom: 16px; }
+    .feature-card h3 { margin-bottom: 10px; color: var(--white); }
+    .feature-card p { font-size: 0.9rem; line-height: 1.62; }
+
+    /* STAT BANNER */
+    .stat-banner { background: rgba(59,130,246,0.06); border: 1px solid rgba(59,130,246,0.2); border-radius: var(--radius-lg); padding: 40px 48px; display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .stat-item { text-align: center; }
+    .stat-num { font-size: 2.8rem; font-weight: 900; color: var(--accent); letter-spacing: -0.04em; line-height: 1; margin-bottom: 6px; }
+    .stat-desc { font-size: 0.85rem; color: var(--gray-2); }
+    .stat-divider { width: 1px; height: 60px; background: var(--border); flex-shrink: 0; }
+
+    /* DOWNLOAD */
+    .download-section { padding: 100px 24px; background: var(--bg-2); position: relative; overflow: hidden; }
+    .download-section::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(59,130,246,0.12) 0%, rgba(232,121,249,0.06) 50%, transparent 100%); pointer-events: none; }
+    .download-section::after { content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%); pointer-events: none; }
+    .download-inner { position: relative; z-index: 1; text-align: center; max-width: 600px; margin: 0 auto; }
+    .download-inner h2 { margin-bottom: 16px; }
+    .download-inner p { font-size: 1.1rem; color: var(--gray-2); margin-bottom: 40px; }
+    .store-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .store-btn { display: inline-flex; align-items: center; gap: 12px; background: var(--white); color: #0a0a0f; padding: 14px 24px; border-radius: 14px; text-decoration: none; transition: transform var(--transition), box-shadow var(--transition); min-width: 160px; }
+    .store-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    .store-btn-icon { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .store-btn-icon svg { width: 24px; height: 24px; fill: #0a0a0f; }
+    .store-btn-text { display: flex; flex-direction: column; align-items: flex-start; }
+    .store-btn-sub { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.03em; opacity: 0.6; }
+    .store-btn-name { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; }
+
+    /* FOOTER */
+    footer { background: var(--bg); border-top: 1px solid var(--border); padding: 48px 24px; }
+    .footer-inner { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; }
+    .footer-logo { display: flex; align-items: center; gap: 8px; font-size: 1rem; font-weight: 800; color: var(--white); text-decoration: none; letter-spacing: -0.03em; }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; list-style: none; }
+    .footer-links a { font-size: 0.875rem; color: var(--gray-3); text-decoration: none; transition: color var(--transition); }
+    .footer-links a:hover { color: var(--gray-2); }
+    .footer-copy { font-size: 0.8rem; color: var(--gray-3); }
+
+    @media (max-width: 860px) {
+      .two-col, .two-col.flip { grid-template-columns: 1fr; gap: 48px; direction: ltr; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .stat-banner { flex-direction: column; text-align: center; }
+      .stat-divider { width: 60px; height: 1px; }
+    }
+    @media (max-width: 480px) { .store-buttons { flex-direction: column; align-items: center; } }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a href="/" class="nav-logo">
+      <img src="icon.png" alt="Sidedoor" style="width:32px;height:32px;border-radius:8px;margin-right:8px;vertical-align:middle;" />
+      Sidedoor
+    </a>
+    <a href="#download" class="nav-cta">Get the app</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge reveal">
+        <span class="hero-badge-dot"></span>
+        The Upgrade from Calculator Vault
+      </div>
+      <h1 class="reveal reveal-delay-1">
+        Calculator vaults<br/>
+        hide photos.<br/>
+        <span class="accent-gradient">Sidedoor hides more.</span>
+      </h1>
+      <p class="hero-sub reveal reveal-delay-2">
+        Over 100 million people have downloaded calculator vault apps. But hiding photos is just the beginning. Sidedoor disguises your entire professional life — the app, the contacts, and the conversations.
+      </p>
+      <div class="hero-ctas reveal reveal-delay-3">
+        <a href="#download" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          Download free — £2/month
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM WITH VAULT APPS -->
+  <section class="content-section" style="background: var(--bg);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">The limitation</span>
+        <h2>Calculator vaults do one thing. Is that enough?</h2>
+        <p>They're popular for a reason — they work for hiding photos. But if you need more than that, they fall short fast.</p>
+      </div>
+      <div class="stat-banner reveal reveal-delay-1">
+        <div class="stat-item">
+          <div class="stat-num">100M+</div>
+          <div class="stat-desc">Calculator vault downloads globally</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">1</div>
+          <div class="stat-desc">Thing they actually hide (photos)</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">0</div>
+          <div class="stat-desc">Private messaging. Private contacts. Disappearing texts.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section class="content-section" style="background: var(--bg-2);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Side by side</span>
+        <h2>What Sidedoor does that vault apps can't.</h2>
+        <p>Calculator vault apps were built to hide media. Sidedoor was built to hide a professional life — which is a very different problem.</p>
+      </div>
+      <div class="compare-wrap reveal reveal-delay-1">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Sidedoor</th>
+              <th>Calculator Vault</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight">
+              <td>Disguisable app icon (10 options)</td>
+              <td class="yes">✓ Yes</td>
+              <td class="yes">✓ Yes — looks like a calculator</td>
+            </tr>
+            <tr>
+              <td>Hide private contacts</td>
+              <td class="yes">✓ Yes</td>
+              <td class="no">✗ No</td>
+            </tr>
+            <tr class="highlight">
+              <td>Private messaging</td>
+              <td class="yes">✓ Yes</td>
+              <td class="no">✗ No</td>
+            </tr>
+            <tr>
+              <td>Disappearing messages (auto-delete)</td>
+              <td class="yes">✓ Yes</td>
+              <td class="no">✗ No</td>
+            </tr>
+            <tr class="highlight">
+              <td>Secret word to share contact details</td>
+              <td class="yes">✓ Yes</td>
+              <td class="no">✗ No</td>
+            </tr>
+            <tr>
+              <td>Custom contact name in your phone</td>
+              <td class="yes">✓ Yes</td>
+              <td class="no">✗ No</td>
+            </tr>
+            <tr class="highlight">
+              <td>Hide photos</td>
+              <td class="no">Not the focus</td>
+              <td class="yes">✓ Yes</td>
+            </tr>
+            <tr>
+              <td>Monthly cost</td>
+              <td>£2/month</td>
+              <td>Free (with ads) or £1–4/month</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT SIDEDOOR DOES -->
+  <section class="content-section" style="background: var(--bg);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Full feature set</span>
+        <h2>Everything Sidedoor protects.</h2>
+        <p>Calculator vaults handle one layer. Sidedoor handles the entire surface area of your private professional life.</p>
+      </div>
+      <div class="feature-grid reveal reveal-delay-1">
+        <div class="feature-card">
+          <div class="feature-card-icon">🎭</div>
+          <h3>10 disguise icons</h3>
+          <p>Calculator, weather, torch, compass, notes, files — and more. Pick the one least likely to raise eyebrows on your particular phone.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">👤</div>
+          <h3>Custom contact name</h3>
+          <p>Sidedoor lives in your contacts under any name you choose. Mum, Dad, a friend — completely innocuous, even under a direct scroll.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">🔑</div>
+          <h3>Secret word system</h3>
+          <p>Clients find your number via a word you give them in person. No public profile. No directory. No way for your employer to stumble across you.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">💬</div>
+          <h3>Disappearing messages</h3>
+          <p>All conversations vanish after 1 hour, 24 hours, or 7 days. No archive. No thread. Nothing sitting there to be found later.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">📱</div>
+          <h3>Hidden client list</h3>
+          <p>Your professional contacts live inside Sidedoor — not in your phone's main contacts app. Completely invisible to anyone looking over your shoulder.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-card-icon">🔄</div>
+          <h3>Change your word any time</h3>
+          <p>If you change jobs, want a fresh start, or just want tighter control — swap your word and the old one stops working immediately for everyone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO UPGRADES -->
+  <section class="content-section" style="background: var(--bg-2);">
+    <div class="container">
+      <div class="two-col">
+        <div class="copy-block reveal">
+          <span class="section-label">Who's switching</span>
+          <h2>Beyond hiding photos.</h2>
+          <p>Calculator vault users who upgrade to Sidedoor are usually people who realised their problem is bigger than a photo folder. They need to hide an entire professional channel — not just media.</p>
+          <p>If your concern is keeping a side business, private client relationships, or a freelance operation invisible from your employer, a vault app was never designed for that.</p>
+          <p>Sidedoor was.</p>
+          <ul class="check-list">
+            <li>Professionals who take private clients alongside a full-time job</li>
+            <li>Anyone whose side hustle could get them in trouble at work</li>
+            <li>Freelancers who need client contacts kept completely off the radar</li>
+            <li>People who need disappearing messages, not just hidden photos</li>
+          </ul>
+        </div>
+        <div class="reveal reveal-delay-2" style="background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 40px 36px;">
+          <div class="section-label" style="margin-bottom: 20px;">The upgrade path</div>
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="display: flex; align-items: flex-start; gap: 16px;">
+              <div style="font-size: 1.2rem; min-width: 32px; text-align: center; color: var(--gray-3); text-decoration: line-through;">📷</div>
+              <div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--gray-3); margin-bottom: 4px; text-decoration: line-through;">Calculator vault</div>
+                <div style="font-size: 0.85rem; color: var(--gray-3);">Hides your camera roll. Looks like a calculator. That's it.</div>
+              </div>
+            </div>
+            <div style="height: 1px; background: var(--border);"></div>
+            <div style="display: flex; align-items: flex-start; gap: 16px;">
+              <div style="font-size: 1.2rem; min-width: 32px; text-align: center;">🔒</div>
+              <div>
+                <div style="font-size: 0.9rem; font-weight: 600; color: var(--white); margin-bottom: 4px;">Sidedoor</div>
+                <div style="font-size: 0.85rem; color: var(--gray-2);">Hides your clients, your conversations, your entire professional side. Disguisable icon, private contacts, disappearing messages. £2/month.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="download-section" id="download">
+    <div class="download-inner">
+      <div class="reveal">
+        <span class="section-label">Available now</span>
+        <h2>More than a vault. A private professional life.</h2>
+        <p>Download free. 7-day trial. £2/month for professionals. Cancel after the first month.</p>
+      </div>
+      <div class="store-buttons reveal reveal-delay-1">
+        <a href="#" class="store-btn">
+          <div class="store-btn-icon">
+            <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          </div>
+          <div class="store-btn-text">
+            <span class="store-btn-sub">Download on the</span>
+            <span class="store-btn-name">App Store</span>
+          </div>
+        </a>
+        <a href="#" class="store-btn">
+          <div class="store-btn-icon">
+            <svg viewBox="0 0 24 24"><path d="M3.18 23.79c.3.16.64.22.99.16l13.12-7.58-2.76-2.76-11.35 10.18zm-1.2-21.3C1.55 2.87 1.5 3.32 1.5 3.79v16.42c0 .47.05.92.48 1.3l.07.07 9.2-9.2v-.22L2.05 2.42l-.07.07zM20.3 10.37l-2.63-1.52-3.08 3.08 3.08 3.08 2.66-1.54c.76-.44.76-1.16-.03-1.6zM4.17.21L17.3 7.79 14.54 10.55 3.19.37C3.54.27 3.9.33 4.17.55V.21z"/></svg>
+          </div>
+          <div class="store-btn-text">
+            <span class="store-btn-sub">Get it on</span>
+            <span class="store-btn-name">Google Play</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="/" class="footer-logo">
+        <span style="width:7px;height:7px;background:var(--accent);border-radius:50%;box-shadow:0 0 12px var(--accent);display:inline-block;"></span>
+        Sidedoor
+      </a>
+      <ul class="footer-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/#faq">FAQ</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+      </ul>
+      <span class="footer-copy">&copy; 2025 Sidedoor. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <script>
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+    window.addEventListener('load', () => { document.querySelectorAll('.hero .reveal').forEach(el => setTimeout(() => el.classList.add('visible'), 100)); });
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.style.background = window.scrollY > 20 ? 'rgba(10,10,15,0.92)' : 'rgba(10,10,15,0.7)'; });
+  </script>
+</body>
+</html>
