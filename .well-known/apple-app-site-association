@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["75XMHQF8D8.com.sidedoor.app"],
+        "components": [
+          { "/": "/l/*" }
+        ]
+      }
+    ]
+  }
+}
